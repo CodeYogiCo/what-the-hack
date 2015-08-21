@@ -36,20 +36,14 @@
 <script src="js/jquery.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-<script src="/js/googleSecurity.js"></script>
 <!-- Plugin JavaScript -->
 <script src="js/jquery.easing.min.js"></script>
 <script src="js/jquery.fittext.js"></script>
 <script src="js/wow.min.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="js/creative.js"></script>
-
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-
-    <meta name="google-signin-client_id" content="720978887997-5tvk3foplvbv42qpa652josapujtthjj.apps.googleusercontent.com">
 </head>
 <body id="page-top">
-
 	<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -82,12 +76,7 @@
 			<div class="header-content-inner"></div>
 		</div>
 
-  <div id="gConnect" >
-        <div class="g-signin2" data-onsuccess="onSignIn1" data-theme="dark"></div>
-  </div>
-    <div id="gConnect" >
-        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-  </div>
+
 		<div class="form">
 			<ul class="tab-group">
 				<li class="tab active"><a href="#signup">Sign Up</a></li>
@@ -99,20 +88,27 @@
 					<form th:action="@{/user/signup}" method="post">
 						<div class="top-row">
 							<div class="field-wrap">
-								<input type="text" required autocomplete="off" name="fname" placeholder="First Name*" />
+								<label> First Name<span class="req">*</span>
+								</label> <input type="text" required autocomplete="off" name="fname" />
 							</div>
 							<div class="field-wrap">
-								 <input type="text" required autocomplete="off" name="lname" placeholder="Last Name*" />
+								<label> Last Name<span class="req">*</span>
+								</label> <input type="text" required autocomplete="off" name="lname" />
 							</div>
 						</div>
 						<div class="field-wrap">
-							<input type="email" required autocomplete="off" name="email" placeholder="Email Address*"/>
+							<label> Email Address<span class="req">*</span>
+							</label> <input type="email" required autocomplete="off" name="email"/>
 						</div>
 						<div class="field-wrap">
-							<input type="password" required autocomplete="off" name="password" placeholder="Set A Password*" />
+							<label> Set A Password<span class="req">*</span>
+							</label> <input type="password" required autocomplete="off" name="password" />
 						</div>
 
 						<div class="field-wrap">
+							<!-- <label> Subject Matter Expertise<span class="req">*</span>
+							</label>  -->
+							<!-- <input type="text" required autocomplete="off" name="sme"/> -->
 							<select id="sme" name="sme">
 								<option>Subject Matter Expertise</option>
 								<option>Java</option>
@@ -124,22 +120,26 @@
 						</div>
 
 						<div class="field-wrap">
-							 <input type="text" required autocomplete="off" name="otherExpertise" placeholder="Secondary Skills*"/>
+							<label> Secondary Skills<span class="req">*</span>
+							</label> <input type="text" required autocomplete="off" name="otherExpertise"/>
 						</div>
 
 						<div class="field-wrap">
-							 <input type="text" required autocomplete="off" name="designation" placeholder="Designation*"/>
+							<label> Designation<span class="req">*</span>
+							</label> <input type="text" required autocomplete="off" name="designation"/>
 						</div>
 
 						<div class="field-wrap">
-							<input type="text" required autocomplete="off" name="employeeId" placeholder="EmployeedId*"/>
+							<label> EmployeedId<span class="req">*</span>
+							</label> <input type="text" required autocomplete="off" name="employeeId"/>
 						</div>
 
 						<div class="field-wrap">
-							<input type="text" required autocomplete="off" name="team" placeholder="Team*"/>
+							<label> Team<span class="req">*</span>
+							</label> <input type="text" required autocomplete="off" name="team"/>
 						</div>
 
-						<button type="submit" class="button button-block">
+						<button type="submit" class="button button-block" />
 						Get Started
 						</button>
 					</form>
@@ -150,16 +150,18 @@
 					<h1>Welcome Back!</h1>
 					<form th:action="@{/login}" method="post">
 						<div class="field-wrap">
-							<input type="email" required autocomplete="off" name="email" placeholder="Email Address*" />
+							<label> Email Address<span class="req">*</span>
+							</label> <input type="email" required autocomplete="off" name="email" />
 						</div>
 						<div class="field-wrap">
-							<input type="password" required autocomplete="off"
-								name="password" placeholder="Password*" />
+							<label> Password<span class="req">*</span>
+							</label> <input type="password" required autocomplete="off"
+								name="password" />
 						</div>
 						<p class="forgot">
 							<a href="#">Forgot Password?</a>
 						</p>
-						<button class="button button-block" type="submit">
+						<button class="button button-block" type="submit" />
 						Log In
 						</button>
 					</form>
@@ -170,24 +172,49 @@
 		<!-- /form -->
 	</header>
 </body>
+</html>
 
 <script>
-	$('.tab a').on('click', function (e) {
+ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
+      var $this = $(this),
+          label = $this.prev('label');
 
-    e.preventDefault();
+          if (e.type === 'keyup') {
+                if ($this.val() === '') {
+              label.removeClass('active highlight');
+            } else {
+              label.addClass('active highlight');
+            }
+        } else if (e.type === 'blur') {
+            if( $this.val() === '' ) {
+                label.removeClass('active highlight');
+                } else {
+                label.removeClass('highlight');
+                }
+        } else if (e.type === 'focus') {
 
-    $(this).parent().addClass('active');
-    $(this).parent().siblings().removeClass('active');
+          if( $this.val() === '' ) {
+                label.removeClass('highlight');
+                }
+          else if( $this.val() !== '' ) {
+                label.addClass('highlight');
+                }
+        }
 
-    target = $(this).attr('href');
+    });
 
-    $('.tab-content > div').not(target).hide();
+    $('.tab a').on('click', function (e) {
 
-    $(target).fadeIn(600);
+      e.preventDefault();
 
-  });
-	
+      $(this).parent().addClass('active');
+      $(this).parent().siblings().removeClass('active');
+
+      target = $(this).attr('href');
+
+      $('.tab-content > div').not(target).hide();
+
+      $(target).fadeIn(600);
+
+    });
 </script>
-
-
-</html>

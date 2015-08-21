@@ -24,7 +24,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/creative.css" type="text/css">
-    <script src="/js/googleSecurity.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -97,21 +96,11 @@
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
                     <li>
-                        <a class="page-scroll"  href="ideaPage">Idea</a>
+                        <a class="page-scroll" href="idea.html" href="idea">Idea</a>
                     </li>
 
                     <li>        
-                       <a id="hacktube" class="page-scroll" href="hacktube">HackTube</a>      
-                   </li>
-                   
-                   <li>
-                   		<a id="login" href="login">Login</a>
-                   </li>
-                   <li>
-                   		<a id="logout" href="logout" >Logout</a>
-                   </li>
-                    <li>
-                        <a id="logout" href="logout">bbb</a>
+                       <a class="page-scroll" href="hacktube">HackTube</a>      
                    </li>
                 </ul>
             </div>
@@ -130,11 +119,11 @@
                 <hr>
                 <p class="primary">
                   <span class="s1 heading">Learn new things.</span>
-                  <span class="s1 heading">Discover new technology.</span>
-                  <span class="s1 heading">Build something new.</span>
-                  
-                  <span class="s1 heading">Win exciting prizes.</span><br/>
-                  <span class="s1 heading">Presenting your <a href="2048" id="2048">fun</a> neighbourhood geek platform.</span>
+                  <span class="s1 heading">Discover new tech.</span>
+                  <span class="s1 heading">Submit your ideas.</span>
+                  <span class="s1 heading">Hack those damn ideas.</span>
+                  <span class="s1 heading">Win exciting prizes.</span>
+                  <span class="s1 heading">Presenting your <a href="2048">fun</a> neighbourhood geek platform.</span>
                 </p>
 
 
@@ -150,8 +139,8 @@
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <h2 class="section-heading">We've got what you need!</h2>
                     <hr class="light">
-                    <p >We create discussion spaces for geeks. Come to our events to meet like minded people,learn new things and discover new stuff!</p>
-                  <!--   <a href="#" class="btn btn-default btn-xl">Get Started!</a> -->
+                    <p class="text-faded">We create discussion spaces for geeks. Come to our events to meet like minded people,learn new things and discover new stuff!</p>
+                    <a href="#" class="btn btn-default btn-xl">Get Started!</a>
                 </div>
             </div>
         </div>
@@ -204,7 +193,7 @@
         <div class="container-fluid">
             <div class="row no-gutter">
                 <div class="col-lg-4 col-sm-6">
-                    <a href="#hack1" class="portfolio-box" id="portfolio1">
+                    <a href="#hack1" class="portfolio-box">
                         <img src="images/portfolio/1.jpg" class="img-responsive" alt="">
                       <!--  <iframe width="560" height="242.48" src="https://www.youtube.com/embed/IC1NqCSYTBE" frameborder="0" allowfullscreen="" class="img-responsive" alt="" style="height:242.48px;"></iframe> -->
                         <div class="portfolio-box-caption">
@@ -298,16 +287,17 @@
         </div>
     </section>
 
-    <section id="hack1">
+    <section id="services">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-6">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Ongoing Hack</h2>
+                    <h2 class="section-heading">Problem Statements</h2>
                     <hr class="primary">
-                  <!--  <p>16-18 July 2015, Bangalore</p> -->
+                    <p>16-18 July 2015, Bangalore</p>
                     <p>Status: Submissions are currently getting accepted</p>
-                    <p>Registration will be open soon.
+                    <p>Registration will be open soon. Start submitting your
+                        <a href="idea.html">ideas!</a>
                     <p>There are great prizes to be won.</p>
                 </div>
 
@@ -354,12 +344,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">The Hero and the villian</h2>
-                    <h3 class="section-heading">Small little hacks that did wonders and few things that din't work</h3>
+                    <h2 class="section-heading">Do you have lesson learnts and best practices within your poject</h2>
                     <hr class="light">
-                    
-                    <p>Pitch in your learnings in our Hack Talks</p>
-                    <a href="#" class="btn btn-default btn-xl">Coming Soon!</a>
+                    <p class="text-faded">Pitch in your lessons in our Hack Talks</p>
+                    <a href="#" class="btn btn-default btn-xl">Get Started!</a>
                 </div>
             </div>
         </div>
@@ -370,7 +358,7 @@
         <div class="container text-center">
             <div class="call-to-action">
                 <h2>Start Participating!</h2>
-                <a href="login" class="btn btn-default btn-xl wow tada">Registration Opening Soon!</a>
+                <a href="signUp.html" class="btn btn-default btn-xl wow tada">Register Now!</a>
             </div>
         </div>
     </aside>
@@ -384,12 +372,17 @@
                     <h2 class="section-heading">Let's Get In Touch!</h2>
                     <hr class="primary">
                     <p>Ready? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
-              	   <div class="col-lg-8 col-lg-offset-2 text-center img-us">
-                    <i class="fa fa-phone fa-3x wow bounceIn"></i> 
-                    <p>wth@snapdeal.com</p>
-                    <p>Vishal & Saloni</p>
                 </div>
-               
+               <div class="col-lg-4 col-lg-offset-2 text-center img-us">
+                    <!-- <i class="fa fa-phone fa-3x wow bounceIn"></i> -->
+                    <img src="images/vishal.jpg" />
+                    <p>Vishal</p>
+                </div>
+                <div class="col-lg-4 text-center img-us">
+                   <!--  <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i> -->
+                    <img src="images/portfolio/saloni.jpg" />
+                    <p>Saloni</p></a></p>
+                </div>
             </div>
         </div>
     </section>
@@ -418,22 +411,7 @@
 
     <script src="js/mytour.js"></script>
     <script src="js/login.js"></script>
-    
-    
-    
-    
-  <script type="text/javascript">
-  var auth2 = auth2 || {};
 
-  (function() {
-    var po = document.createElement('script');
-    po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://plus.google.com/js/client:plusone.js?onload=startApp';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(po, s);
-  })();
-  </script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" ></script>
 </body>
 
 </html>

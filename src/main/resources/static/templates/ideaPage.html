@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>WTH</title>
+      <!-- Bootstrap Core CSS -->
+      <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+      <!-- Custom Fonts -->
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+      <!-- Plugin CSS -->
+      <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+      <!-- Custom CSS -->
+      <link rel="stylesheet" href="css/creative.css" type="text/css">
+      <link rel="stylesheet" href="css/idea.css" type="text/css">
+      <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+    <!--  <link href="css/impress-demo.css" rel="stylesheet" /> -->
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="z-index:100;">
+      <div class="container-fluid">
+         <!-- Brand and toggle get grouped for better mobile display -->
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">SnapDeal</a>
+         </div>
+         <!-- Collect the nav links, forms, and other content for toggling -->
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+               <li>
+                  <a class="page-scroll" href="/#about">About</a>
+               </li>
+               <li>
+                  <a class="page-scroll" href="/#services">Hacks</a>
+               </li>
+               <li>
+                  <a class="page-scroll" href="/#portfolio">Problem Statements</a>
+               </li>
+               <li>
+                  <a class="page-scroll" href="/#contact">Contact</a>
+               </li>
+               <li>
+                  <a href="#submitForm" class="page-scroll submit-idea">Submit now!</a>
+               </li>
+            </ul>
+         </div>
+         <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+   </nav>
+  <body id="page-top">
+  
+               <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+                  <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                 <!--   <li data-target="#myCarousel" data-slide-to="2" class=""></li> -->
+                  </ol>
+                  <div class="carousel-inner" role="listbox">
+                  <!-- <div class="item active">
+                      <img class="first-slide" src="images/idea_03.jpg" alt="First slide">
+                      <div class="container">
+                        <div class="carousel-caption">
+                           <h1>Example headline.</h1>
+                          <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                          <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p> -->
+                      <!-- </div>
+                      </div>
+                    </div>  -->
+                    <div class="item active">
+                      <img class="first-slide" src="images/idea_01.jpg" alt="first slide">
+                      <div class="container">
+                        <div class="carousel-caption">
+                       <!--    <h1>Another example headline.</h1>
+                          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                          <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <img class="second-slide" src="images/idea_02.jpg" alt="second slide">
+                      <div class="container">
+                        <div class="carousel-caption">
+                         <!--  <h1>One more for good measure.</h1>
+                          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                          <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+
+         <!--    </div>
+         </div>
+      </header> -->
+
+   </body>
+
+
+      <section class="bg-primary" id="submitForm">
+         <div class="container">
+         <div class="row">
+            <form th:action="@{/idea}" method="post">
+               <h3 class="idea-h3">Lets Do it!</h3>
+               <div class="form-group">
+                  <input type="text" class="form-control" id="inputTitle" placeholder="Title" name="ideaOverview">
+               </div>
+               
+               <div class="form-group">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email">
+               </div>
+
+               <div class="form-group">
+                  <input type="text" class="form-control" id="inputSection" placeholder="Section" name="section">
+               </div>
+               
+               <div class="form-group">
+                  <textarea class="form-control" rows="5" id="inputObjective" placeholder="Objective" name="objective"></textarea>
+               </div>
+               <div class="form-group">
+                  <textarea class="form-control" rows="12" id="inputDescription" placeholder="Description" name="description"></textarea>
+               </div>
+
+          <!--       <div class="form-group">
+                    <textarea class="form-control" rows="5" id="inputSpeakerBio" placeholder="Tell us something about yourself" name="speakerBio"></textarea>
+               </div>
+
+              <div class="form-group">	
+                    <textarea class="form-control" rows="5" id="inputReq" placeholder="Requirements" name="requirements"></textarea>
+               </div> -->
+
+            <!--    <input type="button" class="btn btn-primary btn-xl wow tada" value="Submit" /> -->
+             
+                <button type="submit" class="btn btn-primary btn-xl wow tada">
+                            Submit
+                </button>
+            </form>
+         </div>
+         <!-- Current Sessions -->
+         <div class="row">
+            <h3 class="idea-h3">Current Submissions</h3>
+            <div class="table-responsive">
+               <table class="table table-bordered listing">
+              <thead>
+                  <tr>
+                     <th class="num">#</th>
+                     <th>Speaker</th>
+                     <th>Objective</th>
+                     <th>Section</th>
+                     <th class="num">+1</th>
+                     <th class="num"><i class="fa fa-comment-o"></i></th>
+                     <th>Submitted</th>
+                  </tr>
+               </thead>
+             <!--   <tbody class="link">
+                  <tr>
+                     <td class="num"><a href="/2015/63-angularjs-workshop">1</a></td>
+                     <td colspan="6">
+                        <a href="/2015/63-angularjs-workshop"><strong>AngularJS Workshop</strong></a>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td><a href="/2015/63-angularjs-workshop">Saloni Jain(~saloni-juit)</a></td>
+                     <td><a href="/2015/63-angularjs-workshop">Objective</a></td>
+                     <td><a href="/2015/63-angularjs-workshop">Workshops</a></td>
+                     <td class="num"><a href="/2015/63-angularjs-workshop">
+                        1
+                        </a>
+                     </td>
+                     <td class="num"><a href="/2015/63-angularjs-workshop">0</a></td>
+                     <td><a href="/2015/63-angularjs-workshop">Sun, Aug  2</a></td>
+                  </tr>
+               </tbody>  -->
+            </div>
+         </div>
+      </section>
+   <!-- jQuery -->
+   <script src="js/jquery.js"></script>
+   <!-- Bootstrap Core JavaScript -->
+   <script src="js/bootstrap.min.js"></script>
+   <!-- Plugin JavaScript -->
+   <script src="js/jquery.easing.min.js"></script>
+   <script src="js/jquery.fittext.js"></script>
+   <script src="js/wow.min.js"></script>
+   <!-- Custom Theme JavaScript -->
+   <script src="js/creative.js"></script>
+   <script src="js/handlebars-v3.0.3.js"></script>
+
+   <script>
+      $(document).ready(function(){
+      
+      $.ajax({
+          url: "/ideas", 
+          success: function(result){
+                 console.log(result);
+                $.each(result,function(i,val){
+                  i = i + 1;
+                  var html = '<tbody class="link"><tr>';
+                  html+= '<td class="num">'+i+'</td>';
+                  html+=  '<td colspan="6"><a href="/ideaDetail?idea='+val.ideaNumber+'">'+val.ideaOverview+
+                  '</a></td></tr>';
+                  html+= '<tr><td></td><td><a href="/ideaDetail?idea='+val.ideaNumber+'">'+val.email+
+                  '</a></td><td><a>'+val.objective+'</a></td>'+
+                     '<td><a>'+val.section+'</a></td>'+
+                      '<td class="num"><a>1</a></td>'+
+                      '<td class="num"><a>0</a></td>'+
+                      '<td><a>Mon, Aug  17</a></td></tr></tbody>';
+                  // console.log(html);
+                  $('table.table').append(html);
+                });
+          }
+    });
+
+      }); 
+   </script>
+   </body>
+</html>

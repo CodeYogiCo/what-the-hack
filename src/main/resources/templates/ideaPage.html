@@ -30,6 +30,10 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+      <script src="/js/googleSecurity.js"></script>
+          <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <meta name="google-signin-client_id" content="720978887997-5tvk3foplvbv42qpa652josapujtthjj.apps.googleusercontent.com">
    </head>
    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top" style="z-index:100;">
       <div class="container-fluid">
@@ -167,5 +171,13 @@
    <script src="js/creative.js"></script>
    <script src="js/export.js"></script>
    <script src="js/ideaPage.js"></script>
+   
+     <div id="gConnect" >
+        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+  </div>
+   
+   <a href="#" onclick="signOut();">Sign out</a>
+
+   
    </body>
 </html>
