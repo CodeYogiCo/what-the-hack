@@ -8,6 +8,7 @@ import java.io.Reader;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.http.HttpTransport;
@@ -17,6 +18,7 @@ import com.google.api.client.json.jackson.JacksonFactory;
 
 @EnableAutoConfiguration
 @ComponentScan("com.snapdeal")
+@EnableAsync
 public class Application {
 	
 	  private static final HttpTransport TRANSPORT = new NetHttpTransport();

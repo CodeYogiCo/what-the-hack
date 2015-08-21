@@ -1,4 +1,5 @@
 package com.snapdeal.gohack.core;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
     
-    
-    
     @Autowired
 	DataSource dataSource;
 	
@@ -50,20 +49,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			"select email, role from user_roles where email=?");
 	}	
 	
+	
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-	  http.authorizeRequests().antMatchers(HttpMethod.POST, "/user/**").permitAll()
-		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-		.and()
+	  http.authorizeRequests().antMatchers(HttpMethod.POST, "/idea/**").permitAll().
+	  antMatchers("/admin/**").authenticated()
+				.and()
 		  .formLogin().loginPage("/login").failureUrl("/idea")
-		  .usernameParameter("email").passwordParameter("password").defaultSuccessUrl("/login")
+		  .usernameParameter("email").passwordParameter("password").defaultSuccessUrl("/home")
 		.and()
 		  .logout().logoutSuccessUrl("/login?logout")
 		.and()
 		  .exceptionHandling().accessDeniedPage("/403")
 		.and()
-		  .csrf();
+		  .csrf().disable();
 	}
 
       }

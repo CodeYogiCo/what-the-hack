@@ -88,27 +88,20 @@
 					<form th:action="@{/user/signup}" method="post">
 						<div class="top-row">
 							<div class="field-wrap">
-								<label> First Name<span class="req">*</span>
-								</label> <input type="text" required autocomplete="off" name="fname" />
+								<input type="text" required autocomplete="off" name="fname" placeholder="First Name*" />
 							</div>
 							<div class="field-wrap">
-								<label> Last Name<span class="req">*</span>
-								</label> <input type="text" required autocomplete="off" name="lname" />
+								 <input type="text" required autocomplete="off" name="lname" placeholder="Last Name*" />
 							</div>
 						</div>
 						<div class="field-wrap">
-							<label> Email Address<span class="req">*</span>
-							</label> <input type="email" required autocomplete="off" name="email"/>
+							<input type="email" required autocomplete="off" name="email" placeholder="Email Address*"/>
 						</div>
 						<div class="field-wrap">
-							<label> Set A Password<span class="req">*</span>
-							</label> <input type="password" required autocomplete="off" name="password" />
+							<input type="password" required autocomplete="off" name="password" placeholder="Set A Password*" />
 						</div>
 
 						<div class="field-wrap">
-							<!-- <label> Subject Matter Expertise<span class="req">*</span>
-							</label>  -->
-							<!-- <input type="text" required autocomplete="off" name="sme"/> -->
 							<select id="sme" name="sme">
 								<option>Subject Matter Expertise</option>
 								<option>Java</option>
@@ -120,26 +113,22 @@
 						</div>
 
 						<div class="field-wrap">
-							<label> Secondary Skills<span class="req">*</span>
-							</label> <input type="text" required autocomplete="off" name="otherExpertise"/>
+							 <input type="text" required autocomplete="off" name="otherExpertise" placeholder="Secondary Skills*"/>
 						</div>
 
 						<div class="field-wrap">
-							<label> Designation<span class="req">*</span>
-							</label> <input type="text" required autocomplete="off" name="designation"/>
+							 <input type="text" required autocomplete="off" name="designation" placeholder="Designation*"/>
 						</div>
 
 						<div class="field-wrap">
-							<label> EmployeedId<span class="req">*</span>
-							</label> <input type="text" required autocomplete="off" name="employeeId"/>
+							<input type="text" required autocomplete="off" name="employeeId" placeholder="EmployeedId*"/>
 						</div>
 
 						<div class="field-wrap">
-							<label> Team<span class="req">*</span>
-							</label> <input type="text" required autocomplete="off" name="team"/>
+							<input type="text" required autocomplete="off" name="team" placeholder="Team*"/>
 						</div>
 
-						<button type="submit" class="button button-block" />
+						<button type="submit" class="button button-block">
 						Get Started
 						</button>
 					</form>
@@ -150,18 +139,16 @@
 					<h1>Welcome Back!</h1>
 					<form th:action="@{/login}" method="post">
 						<div class="field-wrap">
-							<label> Email Address<span class="req">*</span>
-							</label> <input type="email" required autocomplete="off" name="email" />
+							<input type="email" required autocomplete="off" name="email" placeholder="Email Address*" />
 						</div>
 						<div class="field-wrap">
-							<label> Password<span class="req">*</span>
-							</label> <input type="password" required autocomplete="off"
-								name="password" />
+							<input type="password" required autocomplete="off"
+								name="password" placeholder="Password*" />
 						</div>
 						<p class="forgot">
 							<a href="#">Forgot Password?</a>
 						</p>
-						<button class="button button-block" type="submit" />
+						<button class="button button-block" type="submit">
 						Log In
 						</button>
 					</form>
@@ -172,49 +159,23 @@
 		<!-- /form -->
 	</header>
 </body>
-</html>
 
 <script>
- $('.form').find('input, textarea').on('keyup blur focus', function (e) {
-      var $this = $(this),
-          label = $this.prev('label');
+	$('.tab a').on('click', function (e) {
 
-          if (e.type === 'keyup') {
-                if ($this.val() === '') {
-              label.removeClass('active highlight');
-            } else {
-              label.addClass('active highlight');
-            }
-        } else if (e.type === 'blur') {
-            if( $this.val() === '' ) {
-                label.removeClass('active highlight');
-                } else {
-                label.removeClass('highlight');
-                }
-        } else if (e.type === 'focus') {
+    e.preventDefault();
 
-          if( $this.val() === '' ) {
-                label.removeClass('highlight');
-                }
-          else if( $this.val() !== '' ) {
-                label.addClass('highlight');
-                }
-        }
+    $(this).parent().addClass('active');
+    $(this).parent().siblings().removeClass('active');
 
-    });
+    target = $(this).attr('href');
 
-    $('.tab a').on('click', function (e) {
+    $('.tab-content > div').not(target).hide();
 
-      e.preventDefault();
+    $(target).fadeIn(600);
 
-      $(this).parent().addClass('active');
-      $(this).parent().siblings().removeClass('active');
-
-      target = $(this).attr('href');
-
-      $('.tab-content > div').not(target).hide();
-
-      $(target).fadeIn(600);
-
-    });
+  });
+	
 </script>
+
+</html>
