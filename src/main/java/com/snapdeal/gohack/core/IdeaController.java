@@ -124,6 +124,14 @@ public class IdeaController {
 	{
 		return ideaService.getListOfIdeas(ideaOrFeature);
 	}
+	
+
+	@RequestMapping(value="/ideas/trend" ,method=RequestMethod.GET)
+	public @ResponseBody List<Idea> getListofTrendingIdeas()
+	{
+		return ideaService.getListOfTrendingIdeas();
+	}
+
 
 	@RequestMapping(value="/ideas/exportExcel" ,method=RequestMethod.GET)
 	public @ResponseBody List<Idea> exportToExcel()
@@ -184,11 +192,11 @@ public class IdeaController {
 	}
 
 	@RequestMapping (value="idea/{ideaNumber}/email/{emailId}",method=RequestMethod.POST)
-	public @ResponseBody boolean collabarateIdea(@PathVariable ("emailId") String email,
+	public @ResponseBody int collabarateIdea(@PathVariable ("emailId") String email,
 			@PathVariable ("ideaNumber") String ideaNumber, HttpServletRequest request){
 		if(!isUserAuthorized(request)){
 			request.getSession().setAttribute("takeme", "/idea/"+ideaNumber);
-			return false;
+			return 0;
 		}
 		return ideaService.collabarateIdea(email,ideaNumber);
 	}

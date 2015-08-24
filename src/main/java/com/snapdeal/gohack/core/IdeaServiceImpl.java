@@ -69,7 +69,7 @@ public class IdeaServiceImpl implements IdeaService{
 
 	@Override
 	public List<Idea> getListOfIdeas(String ideaOrFeature) {
-		
+
 		List<Idea> listofIdeas= jdbcTemplate.query("SELECT  t1.*,t2.ideaStatus,t2.ideaUpVote,t2.ideaDownVote ,count(distinct t3.ideaTeamEmailId) As count FROM user_ideas AS t1 "+
 				"INNER JOIN idea_status AS t2 ON t1.ideaNumber = t2.ideaNumber join idea_team as t3 on t1.ideaNumber = t3.ideaNumber "+
 				" where section = ? group by 1 order by submittedOn desc",new Object[]{ideaOrFeature==null
@@ -173,14 +173,20 @@ public class IdeaServiceImpl implements IdeaService{
 
 
 	@Override
-	public boolean collabarateIdea(String email, String ideaNumber) {
-		boolean status=true;
+	public int collabarateIdea(String email, String ideaNumber) {
+		int status=1;
 		try{
-			jdbcTemplate.update("insert into idea_team (ideaNumber,ideaTeamEmailId) "
-					+ "values (?,?)",new Object[]{ideaNumber,email} );
+			int countCollaborators=jdbcTemplate.queryForObject("select count(*) from idea_team where ideaNUmber =?", 
+					new Object[]{ideaNumber},Integer.class);
+			if(countCollaborators<=6){
+				jdbcTemplate.update("insert into idea_team (ideaNumber,ideaTeamEmailId) "
+						+ "values (?,?)",new Object[]{ideaNumber,email} );
+			}else{
+				status=2;
+			}
 		}
 		catch(Exception e){
-			status=false;
+			status=0;
 		}
 		return status;
 	}
@@ -188,18 +194,33 @@ public class IdeaServiceImpl implements IdeaService{
 
 	@Override
 	public boolean updateIdea(Idea idea) {
-		System.out.println(idea);
 		boolean updateStatus=true;
 		try{
+
+
 			jdbcTemplate.update("update user_ideas SET section=?,objective=?,description=?,url=? "
 					+" where ideaNumber= ?",new Object[]{idea.getSection(),idea.getObjective(),idea.getDescription(),
 							idea.getUrl(),idea.getIdeaNumber()});
 		}
 		catch(Exception e){
-			System.out.println(e);
 			updateStatus=false;
 		}
 		return updateStatus;
+	}
+
+
+	@Override
+	public List<Idea> getListOfTrendingIdeas() {
+		List<Idea> listOfIdeas= new ArrayList<Idea>();
+		try{
+			listOfIdeas=jdbcTemplate.query("SELECT  t1.*,t2.ideaStatus,t2.ideaUpVote,t2.ideaDownVote ,t2.ideaUpVote+t2.ideaDownVote as totalVote, "
+					+ "count(distinct t3.ideaTeamEmailId) As count FROM user_ideas AS t1 "
+					+ "INNER JOIN idea_status AS t2 ON t1.ideaNumber = t2.ideaNumber join idea_team as "+
+					"t3 on t1.ideaNumber = t3.ideaNumber group by 1 order by totalVote desc",new BeanPropertyRowMapper<Idea>(Idea.class));
+		}
+		catch(Exception e){
+		}
+		return listOfIdeas;
 	}
 
 

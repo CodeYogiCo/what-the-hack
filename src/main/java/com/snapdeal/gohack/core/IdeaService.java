@@ -16,8 +16,10 @@ public interface IdeaService {
 
 	public List<Idea> exportExcel();
 
-	public boolean collabarateIdea(String email, String ideaNumber);
+	public int collabarateIdea(String email, String ideaNumber);
 
 	public boolean  updateIdea(Idea idea);
+
+	public List<Idea> getListOfTrendingIdeas();
 
 }

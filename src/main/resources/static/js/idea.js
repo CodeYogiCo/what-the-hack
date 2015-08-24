@@ -1,5 +1,7 @@
  $(document).ready(function(){
-	      
+	 $('[data-toggle="popover"]').popover({placement: "bottom"}); 
+	 
+	
 	   $.urlParam = function(name, url) {
 		    if (!url) {
 		     url = window.location.href;
@@ -82,21 +84,23 @@
  	          async:false,
  	          cache:false,
  	          success: function(result){
- 	        	  if(result)
+ 	        	  if(result == 1)
  	        		  $(".join-label").text("your collab has been recorded.");
- 	        	  else
+ 	        	  else if(result == 0)
  	        		 $(".join-label").text("buddy,you are already on!");
+ 	        	 else if(result == 2)
+ 	        		 $(".join-label").text("This team is already full, Please join some other team!");
  	          }
     	   });
     	 
-    	   $(".join-group input,.join-group label").text("").val("");
+    	   $(".join-group input,.join-label").text("").val("");
     	   
        });
        
        $(document).on("click","#editDescription",function(e){
     	   e.preventDefault();
     	   var data = $(".description").text();
-    	   var input = $('<textarea />', { 'name': 'desc', 'id': 'desc', 'class': 'form-control','height':$(".description").height() });
+    	   var input = $('<textarea />', { 'name': 'desc', 'id': 'desc', 'class': 'form-control','maxlength':100,'height':$(".description").height() });
     	   $(".description").replaceWith(input);
     	   $("#desc").text(data);
     	   input.focus();
@@ -112,8 +116,12 @@
     	   e.preventDefault();
     	   $('[data-toggle="popover"]').popover(); 
     	   var links = '';
+    	   var len =  $('.url a').length;
     	   $('.url a').each(function(idx, item) {
-			   links += $(item).text()+",";
+    		   if(idx == len-1)
+				   links += $(item).text();
+    		   else
+    			   links += $(item).text()+",";   
 			});
     	  
     	   var textarea = $('<textarea />', { 'name': 'links', 'id': 'links', 'class': 'form-control', 'height':$(".url").height() });
@@ -199,8 +207,12 @@
 	   
 	   function submitEditedIdea(){
 		   var links = '';
+		   var len = $('.url a').length;
 		   $('.url a').each(function(idx, item) {
-			   links += $(item).text()+",";
+			   if(idx == len - 1)
+				   links += $(item).text(); 
+			   else
+				   links += $(item).text()+",";  
 			});
 		   
 		   var ideaObj = {ideaNumber:idea,description:$(".description").text(),url:links,section: $(".idea-section").text(),objective:$(".objective").text()};

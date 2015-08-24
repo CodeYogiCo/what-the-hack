@@ -1,6 +1,5 @@
 $(document).ready(function() {
-     $("#inputIdea").hide();
-     $("#inputFeature").hide();
+    
      $("#inputSection").change(function() {
          //e.preventDefault();
          var value = $(this).val();
@@ -10,24 +9,44 @@ $(document).ready(function() {
                  "border": "solid 1px red"
              });
              $("#inputIdea").hide();
-             $("#inputFeature").hide();
+            // $("#inputFeature").hide();
          } else if (value == "idea") {
              $("#inputIdea").show();
-             $("#inputFeature").hide();
+           //  $("#inputFeature").hide();
          } else if (value == "feature") {
-             $("#inputFeature").show();
+           //  $("#inputFeature").show();
              $("#inputIdea").hide();
          }
      });
-
+     
+     function paginateTable(){
+    	  $(".easyPaginateNav").remove();
+    	  
+    	   var head='';
+    	     head += '<thead><tr><th class=\"num\">#<\/th>';
+    	     head += '                     <th>Topic\/Submitted By<\/th>';
+    	     head += '                     <th>Objective<\/th><th>Section<\/th> <th>votes<\/th> <th>Status<\/th> <th>Submitted On<\/th><\/tr><\/thead>';
+    	     
+		 $('table.table').easyPaginate({
+			    paginateElement: 'tbody.link',
+			    elementsPerPage: 6,
+			    effect: 'fade'
+		 });
+		 
+		 $('table.table').prepend(head);
+	 }
+ 
+ 
      $.ajax({
          url: "/ideas",
          cache: false,
          async: false,
          success: function(result) {
+        	  
              $.each(result, function(i, val) {
                  i = i + 1;
                  var votes = val.ideaUpVote - val.ideaDownVote;
+                 
                  var html = '<tbody class="link"><tr>';
                  html += '<td class="num">' + i + '</td>';
                  html += '<td colspan="6"><a href="/ideaDetail?idea=' + val.ideaNumber + '">' + val.ideaOverview +
@@ -41,7 +60,12 @@ $(document).ready(function() {
                      '<td><a>' + moment(val.submittedOn).format("MMMM Do YYYY, h:mm:ss a") + '</a></td></tr></tbody>';
                  // console.log(html);
                  $('table.table').append(html);
+             
              });
+             
+         //    $(".easyPaginateNav").remove();
+             paginateTable();
+           
          }
      });
 
@@ -54,11 +78,14 @@ $(document).ready(function() {
              cache: false,
              async: false,
              success: function(result) {
-                 $(".table-striped.table-bordered tbody").remove();
+            	 $(".table-striped.table-bordered tbody,.table-striped.table-bordered thead").remove();
+                 
                  $.each(result, function(i, val) {
                      i = i + 1;
                      var votes = val.ideaUpVote - val.ideaDownVote;
-                     var html = '<tbody class="link"><tr>';
+                     var html='';
+               
+                     html += '<tbody class="link"><tr>';
                      html += '<td class="num">' + i + '</td>';
                      html += '<td colspan="6"><a href="/ideaDetail?idea=' + val.ideaNumber + '">' + val.ideaOverview +
                          '</a></td></tr>';
@@ -71,7 +98,12 @@ $(document).ready(function() {
                          '<td><a>' + moment(val.submittedOn).format("MMMM Do YYYY, h:mm:ss a") + '</a></td></tr></tbody>';
                      // console.log(html);
                      $('table.table').append(html);
+                    
                  });
+             //    $(".easyPaginateNav").remove();
+                 paginateTable();
+                 
+
              }
          });
      });
@@ -85,11 +117,14 @@ $(document).ready(function() {
              cache: false,
              async: false,
              success: function(result) {
-                 $(".table-striped.table-bordered tbody").remove();
+                 $(".table-striped.table-bordered tbody,.table-striped.table-bordered thead").remove();
+     
                  $.each(result, function(i, val) {
                      i = i + 1;
                      var votes = val.ideaUpVote - val.ideaDownVote;
-                     var html = '<tbody class="link"><tr>';
+                     var html='';
+                 
+                     html += '<tbody class="link"><tr>';
                      html += '<td class="num">' + i + '</td>';
                      html += '<td colspan="6"><a href="/ideaDetail?idea=' + val.ideaNumber + '">' + val.ideaOverview +
                          '</a></td></tr>';
@@ -102,7 +137,11 @@ $(document).ready(function() {
                          '<td><a>' + moment(val.submittedOn).format("MMMM Do YYYY, h:mm:ss a") + '</a></td></tr></tbody>';
                      // console.log(html);
                      $('table.table').append(html);
+                     
                  });
+               
+                 paginateTable();
+             //    $('table.table').prepend(head);
              }
          });
      });

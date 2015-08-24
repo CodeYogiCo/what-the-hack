@@ -160,6 +160,19 @@ label.voting-label{
   	  cursor:pointer;
 }
 
+#ideaDetail #popoverEdit{
+    margin: -35px 33px 0 0;
+  cursor: pointer;
+  font-size: 23px;
+	float:right;
+}
+
+.popover-title{
+	color:#f05f40 !important;
+	text-align: center;
+   	text-shadow: none !important;
+}
+
 #ideaDetail .form-control#desc,#ideaDetail .form-control#links{
 	margin-bottom:10px;
 }
@@ -170,21 +183,26 @@ label.voting-label{
   font-size:8em;
 }
 
+.hackFeature .fa-bug{
+	font-size:7em;
+	position: absolute;
+  top: 25%;
+}
+
 #lamp{
 	  position: absolute;
 	  top:4%;	
 }
 
 div#lamp {
- border-radius: 210px;
-  width: 50px;
-  height: 52px;
+   border-radius: 210px;
+  width: 47.5px;
+  height: 56px;
   position: absolute;
   background-color: yellow;
-  left: 6px;
   top: 15px;
-    
-    display: none;
+  display: none;
+  left: 8px;
 }
 
 .idea-title{
@@ -206,8 +224,5 @@ div#lamp {
     font-weight: 200;
 }
 
-.hackFeature .fa-bug{
-  position: absolute;
-  top: 40%;
-  font-size:8em;
-}
+.easyPaginateNav a {padding:5px;}
+.easyPaginateNav a.current {font-weight:bold;text-decoration:underline;}
