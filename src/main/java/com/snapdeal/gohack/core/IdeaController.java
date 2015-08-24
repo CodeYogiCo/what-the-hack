@@ -57,7 +57,7 @@ public class IdeaController {
 			takeme = request.getSession().getAttribute("takeme");
 			request.getSession().removeAttribute("takeme");
 			System.out.println("----takeme removed from session----");
-			return (takeme==null)?"/home":takeme.toString();
+			return (takeme==null)?"/":takeme.toString();
 		} catch (GeneralSecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,7 +77,7 @@ public class IdeaController {
 	public String googleDisconnect(HttpServletRequest request){
 		request.getSession().removeAttribute("gtoken");
 		request.getSession().removeAttribute("takeme");
-		return "/home";
+		return "/";
 	}
 	
 	public  boolean isUserAuthorized(HttpServletRequest request){
