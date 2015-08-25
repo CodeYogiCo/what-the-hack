@@ -38,8 +38,9 @@ import com.snapdeal.gohack.service.IdeaService;
 
 
 @Component
-@PropertySource("classpath:ideas.properties")
-@PropertySource("classpath:sql.properties")
+@PropertySource({"classpath:ideas.properties",
+	"classpath:sql.properties"})
+
 public class IdeaServiceImpl implements IdeaService{
 
 
@@ -128,7 +129,7 @@ public class IdeaServiceImpl implements IdeaService{
 		Status status= new Status();
 		try{
 			jdbcTemplate.update(environment.getProperty("sql.checkifuseralreadyvoted"),new Object[]{idea.getIdeaNumber(),
-				idea.getEmail(),idea.getComment()} );
+				idea.getEmail()} );
 			jdbcTemplate.update(environment.getProperty("sql.upvote"),new Object[]{idea.getIdeaNumber()} );
 		}
 		catch(Exception e){
@@ -143,8 +144,8 @@ public class IdeaServiceImpl implements IdeaService{
 	public Status downVote(Idea idea) {
 		Status status= new Status();
 		try{
-			jdbcTemplate.update(environment.getProperty("sql.checkifuseralreadyvoted"),new Object[]{idea.getIdeaNumber(),idea.getEmail(),
-				idea.getComment()} );
+			jdbcTemplate.update(environment.getProperty("sql.checkifuseralreadyvoted"),new Object[]{idea.getIdeaNumber(),idea.getEmail()
+				} );
 			jdbcTemplate.update(environment.getProperty("sql.downvote"),new Object[]{idea.getIdeaNumber()} );
 		}
 		catch(Exception e){
@@ -262,6 +263,19 @@ public class IdeaServiceImpl implements IdeaService{
 			System.out.println(e);
 		}
 		return counts;
+	}
+
+
+	@Override
+	public boolean comment(String ideaNumber,Comment comment) {
+		boolean status=true;
+		try{
+		jdbcTemplate.update(environment.getProperty("sql.comment"),new Object[]{ideaNumber,comment.getEmail(),comment.getComment()} );
+		}
+		catch(Exception e){
+			status=false;
+		}
+		return status;
 	}
 
 

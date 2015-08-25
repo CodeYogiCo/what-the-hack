@@ -2,18 +2,16 @@ package com.snapdeal.gohack.serviceImpl;
 
 public class Comment {
 	
-	private String user_email;
+	private String email;
 	
 	private String comment;
 
-
-
-	public String getUser_email() {
-		return user_email;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getComment() {
@@ -23,6 +21,8 @@ public class Comment {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
+
 	
 	
 	

@@ -20,8 +20,7 @@ public class Idea {
 	public int count;
 	
 	public String category;
-	
-	public String comment;
+
 	
 	public List<Comment> comments;
 	
@@ -35,13 +34,7 @@ public class Idea {
 		this.comments = comments;
 	}
 
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+	
 
 	public String getCategory() {
 		return category;
