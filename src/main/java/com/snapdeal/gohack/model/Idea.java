@@ -23,6 +23,18 @@ public class Idea {
 	
 	public String comment;
 	
+	public int enabled;
+	
+	
+
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+
 	public List<Comment> comments;
 	
 	

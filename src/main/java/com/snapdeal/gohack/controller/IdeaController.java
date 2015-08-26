@@ -40,14 +40,14 @@ public class IdeaController {
 	private IdeaService ideaService;
 
 
-	 private static final HttpTransport TRANSPORT = new NetHttpTransport();
-	 
-	 private static final JacksonFactory JSON_FACTORY = new JacksonFactory();
-	
+	private static final HttpTransport TRANSPORT = new NetHttpTransport();
+
+	private static final JacksonFactory JSON_FACTORY = new JacksonFactory();
+
 	GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(TRANSPORT, JSON_FACTORY)
-   .setAudience(Arrays.asList("720978887997-5tvk3foplvbv42qpa652josapujtthjj.apps.googleusercontent.com"))
-   .build();
-	
+	.setAudience(Arrays.asList("720978887997-5tvk3foplvbv42qpa652josapujtthjj.apps.googleusercontent.com"))
+	.build();
+
 
 
 	@RequestMapping(value="/tokensignin", method=RequestMethod.POST,headers = 
@@ -76,7 +76,7 @@ public class IdeaController {
 		}
 
 	}
-	
+
 	@RequestMapping(value="/tokensignout", method=RequestMethod.POST,headers = 
 			"content-type=application/x-www-form-urlencoded;charset=UTF-8" ,
 			produces={"application/json"},
@@ -86,7 +86,7 @@ public class IdeaController {
 		request.getSession().removeAttribute("takeme");
 		return "/";
 	}
-	
+
 	public  boolean isUserAuthorized(HttpServletRequest request){
 		return (request.getSession().getAttribute("gtoken") == null)?false: true;
 	}
@@ -105,7 +105,7 @@ public class IdeaController {
 			consumes={"text/xml","application/json"})
 	public ResponseEntity<Status> submitIdea(@RequestBody Idea idea,HttpServletRequest request){
 		String hostName=request.getHeader("Host");
-		
+
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Status>(new Status(true, "home"), HttpStatus.UNAUTHORIZED);
 		}
@@ -122,7 +122,7 @@ public class IdeaController {
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Boolean>(false, HttpStatus.UNAUTHORIZED);
 		}
-		
+
 		boolean  updateStatus=ideaService.updateIdea(idea);
 		return new ResponseEntity<Boolean>(updateStatus, HttpStatus.OK);
 	}
@@ -133,7 +133,7 @@ public class IdeaController {
 	{
 		return ideaService.getListOfIdeas(ideaOrFeature);
 	}
-	
+
 
 	@RequestMapping(value="/ideas/trend" ,method=RequestMethod.GET)
 	public @ResponseBody List<Idea> getListofTrendingIdeas()
@@ -160,7 +160,7 @@ public class IdeaController {
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Status>(new Status(false, "UNAUTHORIZED"), HttpStatus.UNAUTHORIZED);
 		}
-		
+
 		return new ResponseEntity<Status>(ideaService.upVote(idea), HttpStatus.OK);
 
 	}
@@ -168,7 +168,7 @@ public class IdeaController {
 	@RequestMapping(value="/ideastatus/downvote" ,method=RequestMethod.POST)
 	public ResponseEntity<Status> downVote(@RequestBody Idea idea, HttpServletRequest request)
 	{
-		
+
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Status>(new Status(false, "UNAUTHORIZED"), HttpStatus.UNAUTHORIZED);
 		}
@@ -180,28 +180,40 @@ public class IdeaController {
 	@RequestMapping (value="idea/{ideaNumber}/email/{emailId}",method=RequestMethod.POST)
 	public ResponseEntity<Integer> collabarateIdea(@PathVariable ("emailId") String email,
 			@PathVariable ("ideaNumber") String ideaNumber, HttpServletRequest request){
-		
+
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Integer>(-1, HttpStatus.UNAUTHORIZED);
 		}
 		return new ResponseEntity<Integer>(ideaService.collabarateIdea(email,ideaNumber), HttpStatus.OK);
 	}
-	
+
 
 	@RequestMapping (value="/insightcount",method=RequestMethod.GET)
 	public @ResponseBody CountInsight getCount(){
 		return ideaService.getCount();
 	}
-	
-	
+
+
 	@RequestMapping (value="/idea/{ideaNumber}/comment",method=RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Boolean> ideaComment(@PathVariable("ideaNumber") String ideaNumber,
 			@RequestBody Comment comment,HttpServletRequest request){
-		
+
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Boolean>(false, HttpStatus.UNAUTHORIZED);
 		}
 		return new ResponseEntity<Boolean>(ideaService.comment(ideaNumber,comment),HttpStatus.OK);
 	}
+
+
+	@RequestMapping (value="/update/idea/{ideaNumber}/collaborators/{listofCollaboratorsRemoved}/",method=RequestMethod.GET)
+	public ResponseEntity<Boolean> updateCollaborators(@PathVariable ("ideaNumber") String ideaNumber,
+			@PathVariable ("listofCollaboratorsRemoved") String listofCollaboratorsRemoved,HttpServletRequest request){
+		
+		if(!isUserAuthorized(request)){
+			return new ResponseEntity<Boolean>(false, HttpStatus.UNAUTHORIZED);
+		}
+		return new ResponseEntity<Boolean>(ideaService.updateCollaborators(ideaNumber, listofCollaboratorsRemoved),HttpStatus.OK);
+	}
+
 
 }

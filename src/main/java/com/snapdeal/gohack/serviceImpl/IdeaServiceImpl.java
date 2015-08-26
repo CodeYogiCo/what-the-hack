@@ -1,6 +1,8 @@
 package com.snapdeal.gohack.serviceImpl;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +20,9 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.mail.MailException;
@@ -53,6 +57,9 @@ public class IdeaServiceImpl implements IdeaService{
 	@Autowired()
 	@Qualifier("insert")
 	private SimpleJdbcCall simpleJdbcCallForInsert;
+
+	@Autowired
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Autowired()
 	@Qualifier("count")
@@ -112,7 +119,8 @@ public class IdeaServiceImpl implements IdeaService{
 				new Object[]{ideaNumber},new BeanPropertyRowMapper<Idea>(Idea.class));
 		List<String> collabarators= new ArrayList<String>();
 		for(Idea eachIdea: ideas){
-			collabarators.add(eachIdea.getIdeaTeamEmailId());
+			if(eachIdea.getEnabled()==1)
+				collabarators.add(eachIdea.getIdeaTeamEmailId());
 		}
 		Idea finalIdea= ideas.get(0);
 		finalIdea.setCollabarators(collabarators);
@@ -143,7 +151,7 @@ public class IdeaServiceImpl implements IdeaService{
 		Status status= new Status();
 		try{
 			jdbcTemplate.update(environment.getProperty("sql.checkifuseralreadyvoted"),new Object[]{idea.getIdeaNumber(),idea.getEmail()
-				} );
+			} );
 			jdbcTemplate.update(environment.getProperty("sql.downvote"),new Object[]{idea.getIdeaNumber()} );
 		}
 		catch(Exception e){
@@ -192,6 +200,26 @@ public class IdeaServiceImpl implements IdeaService{
 		}
 		return updateStatus;
 	}
+
+
+	@Override
+	public boolean updateCollaborators(String ideaNumber,String listofCollaboratorsRemoved) {
+		boolean status=true;
+		List<String> listofEmails =Arrays.asList(listofCollaboratorsRemoved.split(","));
+		System.out.println(listofEmails);
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("emails", listofEmails);
+		params.put("ideaNumber", ideaNumber);
+		String  queryToBeExceuted=environment.getProperty("sql.updateCollaborators");
+        try{
+			namedParameterJdbcTemplate.update(queryToBeExceuted,params);
+			}
+		catch(Exception e){
+			status=false;
+		}
+		return status;
+	}
+
 
 
 	@Override
@@ -262,12 +290,12 @@ public class IdeaServiceImpl implements IdeaService{
 		}
 		return counts;
 	}
-	
+
 	@Override
 	public boolean comment(String ideaNumber,Comment comment) {
 		boolean status=true;
 		try{
-		jdbcTemplate.update(environment.getProperty("sql.comment"),new Object[]{ideaNumber,comment.getEmail(),comment.getComment()} );
+			jdbcTemplate.update(environment.getProperty("sql.comment"),new Object[]{ideaNumber,comment.getEmail(),comment.getComment()} );
 		}
 		catch(Exception e){
 			status=false;
