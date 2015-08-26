@@ -1,23 +1,6 @@
 $(document).ready(function() {
 	var userObj = sessionStorage.getItem("userObj");
 	 SetUserProfile();
-	 
-     $("#inputSection").change(function() {
-         var value = $(this).val();
-         console.log("value : " + value);
-         if (value == "") {
-            /* $("#inputSection").css({
-                 "border": "solid 1px red"
-             });*/
-             $("#inputIdea").hide();
-         } else if (value == "idea") {
-             $("#inputIdea").show();
-         } else if (value == "feature") {
-             $("#inputIdea").hide();
-         }
-     });
-     
-  
      
      function validateForm(){
     	 var valid = true,
