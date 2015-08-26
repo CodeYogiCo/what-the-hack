@@ -390,6 +390,7 @@ $(document).ready(function() {
          }
      });
      
+  
      
      function validateForm(){
     	 var valid = true,

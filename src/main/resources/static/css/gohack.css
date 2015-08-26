@@ -10383,6 +10383,14 @@ label.voting-label{
   	  cursor:pointer;
 }
 
+#ideaDetail .glyphicon.glyphicon-ok {
+   margin: 5px 9px;
+  cursor: pointer;
+  color: green;
+   float: right;
+   display:none;
+}
+
 #ideaDetail #popoverEdit{
     margin: -35px 33px 0 0;
   cursor: pointer;
@@ -10507,6 +10515,30 @@ body.main-ideas{
   margin: 10px 10px;
   font-size: 15px;
   font-weight: bold;
+}
+
+#collab{
+	border: none;
+  margin-bottom: 20px;
+    margin-top: 4px;
+      box-shadow: none;
+}
+
+#collab span{
+	  margin-right: 5px;
+}
+
+#collab .parent-rem{
+	margin-right:10px;
+	  display: inline;
+  padding: 7px;
+  color: #fff;
+  background-color: coral;
+}
+
+.del-email{
+	color:#fff !important;
+	font-weight:bold;
 }
 *, *:before, *:after {
   box-sizing: border-box;

@@ -2,6 +2,7 @@
 	 $('[data-toggle="popover"]').popover({placement: "bottom"}); 
 	 SetUserProfile();
 	 
+	 var emailsDel = '';
 	 	
 	   $.urlParam = function(name, url) {
 		    if (!url) {
@@ -43,7 +44,7 @@
 	                 });
                 	 $(".url").html(htmlVal);
 	                 
-	                 $(".collabarators").html(result.collabarators.toString());
+	                 $(".collaborators").html(result.collabarators.toString());
 	                 var votes = result.ideaUpVote - result.ideaDownVote;
 	                 $("#upvotes").text(result.ideaUpVote);
 	                 $("#downvotes").text(result.ideaDownVote);
@@ -203,18 +204,59 @@
     	   }
        });
        
-       $(document).on("click","#editCollab",function(){
+       $(document).on("click","#editCollab",function(e){
     	   e.preventDefault();
+    	   $("#removeEmails").css({"display":"block"});
     	   if(checkForAuth()){
-    		   var collab = '';
-    		   var textarea = $('<textarea />', { 'name': 'collab', 'id': 'collab', 'class': 'form-control', 'height':$(".collaborators").height() });
+    		   var collab = '',htmlData='';
+    		   var textarea = $('<div />', { 'name': 'collab', 'id': 'collab', 'class': 'form-control', 'height':$(".collaborators").height() });
+    		  
+    		   
+    		   if($(".collaborators").text() != ""){
+    			   $.each($(".collaborators").text().split(","),function(idx,val){
+    				  htmlData+='<div class="parent-rem" style="display:inline;"><span>'+val+'</span><a class="del-email" data-email='+val+'>X</a></div>'; 
+    			   });
+    		   }
     		   $(".collaborators").replaceWith(textarea);
-    		   
-    		   
-    		   
-    		   textarea.focus();
+    		   console.log("htmlData"+htmlData);
+    		   $("#collab").html(htmlData);
+    		   $("#collab").focus();
     	   }
        });
+       
+       $(document).on("click",".del-email",function(e){
+    	  e.preventDefault();
+      	  var remEmail = $(e.currentTarget).attr("data-email") + ",";
+      	  emailsDel += remEmail;
+      	 $(e.currentTarget).parent().remove();
+       });
+       
+       
+       $(document).on("click","#removeEmails",function(e){
+    	   var emails = emailsDel.replace(/,\s*$/, "");
+    	   console.log("emails"+emails);
+    	   
+    	   $.ajax({
+      			url:"/update/idea/"+idea+"/collaborators/"+emails+"/",
+      			cache:false,
+      		    beforeSend: function(xhr){xhr.setRequestHeader('content-type', 'application/json');},
+	   		   	success:function(response){
+	   		   		console.log(response);
+	   		   		$(".join-label").text("you have edited successfully!");
+	   		   		emailsDel = '';
+	   		   		location.reload();
+	   		   	},
+	   		   	error:function(result){
+	 	        	 if(result.status == "401"){
+		 	        		$(".join-label").text("Please login to continue");
+	 	        	 }
+		 	        else
+		 	        		$(".join-label").text("Something went wrong");
+			   }
+   		   });
+    	      	   
+       });
+       
        
        $(document).on("blur","#links",function(e){
     	   var urls = $("#links").val().split(",");
