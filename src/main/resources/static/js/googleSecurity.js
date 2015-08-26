@@ -8,6 +8,14 @@ function onSignIn(googleUser) {
     console.log("Image URL: " + profile.getImageUrl());
     console.log("Email: " + profile.getEmail());
 
+    
+     var email = profile.getEmail().toString();
+//    if(!validateEmail(email)){
+//    	$("#loginModal").modal('show');
+//    	signOut();
+//    	return;
+//    }
+   
     // The ID token you need to pass to your backend:
     var id_token = googleUser.getAuthResponse().id_token;
 
@@ -19,6 +27,9 @@ function onSignIn(googleUser) {
             console.log('Signed in as: ' + xhr.responseText);
         };
         xhr.send('idtoken=' + id_token);
+        
+      
+        
         sessionStorage.setItem("userObj",profile.getEmail().toString());
         sessionStorage.setItem("name",profile.getName().toString());
         console.log('user object updated');
@@ -26,6 +37,10 @@ function onSignIn(googleUser) {
     }
     
 };
+
+function validateEmail(email){
+    return email.match(/^\"?[\w-_\.]*\"?@snapdeal\.com$/);        
+}
 
 function SetUserProfile(){
  	if(sessionStorage.getItem("userObj") == null)

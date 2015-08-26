@@ -2,7 +2,6 @@
 	 $('[data-toggle="popover"]').popover({placement: "bottom"}); 
 	 SetUserProfile();
 	 
-	 
 	 	
 	   $.urlParam = function(name, url) {
 		    if (!url) {

@@ -10358,7 +10358,7 @@ label.voting-label{
   cursor:pointer;
 }
 
-.join-label,.comm-label,.voting-label{
+.join-label,.comm-label,.voting-label,.idea-label{
 	margin-left: 11px;
   	position: relative;
   	color: #f05f40;
@@ -10467,11 +10467,6 @@ body.main-ideas{
 
 #btnIdeaSubmit{
 	  width: 14%;
-}
-
-label.idea-label{
-	color:black;
-	margin:15px;
 }
 
 #ideaDetail .section p{
