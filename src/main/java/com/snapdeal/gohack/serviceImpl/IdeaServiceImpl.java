@@ -1,6 +1,5 @@
 package com.snapdeal.gohack.serviceImpl;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -20,7 +19,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -42,8 +40,8 @@ import com.snapdeal.gohack.service.IdeaService;
 
 
 @Component
-@PropertySource("classpath:ideas.properties")
-@PropertySource("classpath:sql.properties")
+@PropertySource({"classpath:ideas.properties","classpath:sql.properties"})
+
 public class IdeaServiceImpl implements IdeaService{
 
 
