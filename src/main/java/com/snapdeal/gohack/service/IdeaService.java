@@ -30,5 +30,7 @@ public interface IdeaService {
 	public CountInsight getCount();
 	
 	public boolean comment(String ideaNumber,Comment comment);
+	
+	public boolean updateCollaborators(String ideaNumber,String listofCollaboratorsRemoved);
 
 }
