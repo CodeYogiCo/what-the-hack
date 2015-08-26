@@ -328,3 +328,9 @@ body.main-ideas{
 	color:#fff !important;
 	font-weight:bold;
 }
+
+@media (max-width: 768px) {
+	.fa-lightbulb-o,.fa-bug{
+		display:none;
+	}
+}

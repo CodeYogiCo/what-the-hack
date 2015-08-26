@@ -9896,7 +9896,8 @@ background: #394D61;
 }
 
 #about{
-  padding-bottom: 36px;
+  padding-top: 45px;
+  padding-bottom: 45px;
 }
 
 a#hackDetails:hover{
@@ -10539,6 +10540,12 @@ body.main-ideas{
 .del-email{
 	color:#fff !important;
 	font-weight:bold;
+}
+
+@media (max-width: 768px) {
+	.fa-lightbulb-o,.fa-bug{
+		display:none;
+	}
 }
 *, *:before, *:after {
   box-sizing: border-box;

@@ -609,7 +609,8 @@ background: #394D61;
 }
 
 #about{
-  padding-bottom: 36px;
+  padding-top: 45px;
+  padding-bottom: 45px;
 }
 
 a#hackDetails:hover{
