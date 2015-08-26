@@ -373,7 +373,8 @@ function login(){
 
 $(document).ready(function() {
 	var userObj = sessionStorage.getItem("userObj");
-	
+	 SetUserProfile();
+	 
      $("#inputSection").change(function() {
          var value = $(this).val();
          console.log("value : " + value);
@@ -389,8 +390,45 @@ $(document).ready(function() {
          }
      });
      
+     
+     function validateForm(){
+    	 var valid = true,
+         message = 'Please enter ';
+    	 var len = $('#submitIdeaForm input,#submitIdeaForm textarea').length;
+    	 
+	     $('#submitIdeaForm input,#submitIdeaForm textarea').each(function(index) {
+	         var $this = $(this);
+	         if(!$this.val() && $this.attr("required") == "required") {
+	            	 valid = false;
+	         }
+	     });
+	     
+	     if($('#submitIdeaForm #inputSection').val() == ""){
+	    	 valid = false;
+	     }
+	     
+	     if(!valid)
+	     {
+	    	 $(".idea-label").text("Please enter mandatory fields.");
+	    	 return false;
+	     }
+	     
+	     return  true;
+    	 
+     }
+     
      $("#btnIdeaSubmit").on("click",function(e){
     	 e.preventDefault();
+    	 
+    	 var userObj = sessionStorage.getItem("userObj");
+    	 
+    	 if(userObj == null || userObj == ""){
+    		 $(".idea-label").text("Please login to submit the idea.");
+    		 return;
+    	 }
+    	 
+    	if(validateForm()){
+    	 var userObj = sessionStorage.getItem("userObj");
     	 if(userObj == null || userObj == "")
     	 {
     		 $(".idea-label").text("Please login to submit the idea.");
@@ -418,6 +456,7 @@ $(document).ready(function() {
     	    		   
     	       }
     	    });
+    	}
      });
      
      $.fn.serializeObject = function()
@@ -549,6 +588,14 @@ function onSignIn(googleUser) {
     console.log("Image URL: " + profile.getImageUrl());
     console.log("Email: " + profile.getEmail());
 
+    
+     var email = profile.getEmail().toString();
+//    if(!validateEmail(email)){
+//    	$("#loginModal").modal('show');
+//    	signOut();
+//    	return;
+//    }
+   
     // The ID token you need to pass to your backend:
     var id_token = googleUser.getAuthResponse().id_token;
 
@@ -560,6 +607,9 @@ function onSignIn(googleUser) {
             console.log('Signed in as: ' + xhr.responseText);
         };
         xhr.send('idtoken=' + id_token);
+        
+      
+        
         sessionStorage.setItem("userObj",profile.getEmail().toString());
         sessionStorage.setItem("name",profile.getName().toString());
         console.log('user object updated');
@@ -567,6 +617,10 @@ function onSignIn(googleUser) {
     }
     
 };
+
+function validateEmail(email){
+    return email.match(/^\"?[\w-_\.]*\"?@snapdeal\.com$/);        
+}
 
 function SetUserProfile(){
  	if(sessionStorage.getItem("userObj") == null)
