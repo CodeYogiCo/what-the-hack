@@ -117,8 +117,7 @@ public class IdeaServiceImpl implements IdeaService{
 				new Object[]{ideaNumber},new BeanPropertyRowMapper<Idea>(Idea.class));
 		List<String> collabarators= new ArrayList<String>();
 		for(Idea eachIdea: ideas){
-			if(eachIdea.getEnabled()==1)
-				collabarators.add(eachIdea.getIdeaTeamEmailId());
+			collabarators.add(eachIdea.getIdeaTeamEmailId());
 		}
 		Idea finalIdea= ideas.get(0);
 		finalIdea.setCollabarators(collabarators);
@@ -204,7 +203,6 @@ public class IdeaServiceImpl implements IdeaService{
 	public boolean updateCollaborators(String ideaNumber,String listofCollaboratorsRemoved) {
 		boolean status=true;
 		List<String> listofEmails =Arrays.asList(listofCollaboratorsRemoved.split(","));
-		System.out.println(listofEmails);
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("emails", listofEmails);
 		params.put("ideaNumber", ideaNumber);
