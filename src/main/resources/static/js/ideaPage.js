@@ -4,10 +4,10 @@ $(document).ready(function() {
      $("#inputSection").change(function() {
          var value = $(this).val();
          console.log("value : " + value);
-         if (value == -1) {
-             $("#inputSection").css({
+         if (value == "") {
+            /* $("#inputSection").css({
                  "border": "solid 1px red"
-             });
+             });*/
              $("#inputIdea").hide();
          } else if (value == "idea") {
              $("#inputIdea").show();
