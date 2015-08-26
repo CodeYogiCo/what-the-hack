@@ -203,6 +203,19 @@
     	   }
        });
        
+       $(document).on("click","#editCollab",function(){
+    	   e.preventDefault();
+    	   if(checkForAuth()){
+    		   var collab = '';
+    		   var textarea = $('<textarea />', { 'name': 'collab', 'id': 'collab', 'class': 'form-control', 'height':$(".collaborators").height() });
+    		   $(".collaborators").replaceWith(textarea);
+    		   
+    		   
+    		   
+    		   textarea.focus();
+    	   }
+       });
+       
        $(document).on("blur","#links",function(e){
     	   var urls = $("#links").val().split(",");
            console.log(urls);
