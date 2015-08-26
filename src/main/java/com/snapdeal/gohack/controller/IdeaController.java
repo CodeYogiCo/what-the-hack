@@ -45,7 +45,7 @@ public class IdeaController {
 	private static final JacksonFactory JSON_FACTORY = new JacksonFactory();
 
 	GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(TRANSPORT, JSON_FACTORY)
-	.setAudience(Arrays.asList("720978887997-5tvk3foplvbv42qpa652josapujtthjj.apps.googleusercontent.com"))
+	.setAudience(Arrays.asList("206415578405-lkjaho2fnso9sa91bdeifdiif9ndtpbm.apps.googleusercontent.com"))
 	.build();
 
 
