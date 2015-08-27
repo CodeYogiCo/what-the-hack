@@ -45,7 +45,7 @@ public class IdeaController {
 	private static final JacksonFactory JSON_FACTORY = new JacksonFactory();
 
 	GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(TRANSPORT, JSON_FACTORY)
-	.setAudience(Arrays.asList("206415578405-lkjaho2fnso9sa91bdeifdiif9ndtpbm.apps.googleusercontent.com"))
+	.setAudience(Arrays.asList("720978887997-5tvk3foplvbv42qpa652josapujtthjj.apps.googleusercontent.com"))
 	.build();
 
 
@@ -59,7 +59,14 @@ public class IdeaController {
 		GoogleIdToken idToken = null;
 		Object takeme = null;
 		try {
+			if(tokenId == null){
+				return "/login";
+			}
 			idToken = verifier.verify(tokenId);
+			if(idToken == null || !idToken.getPayload().getEmailVerified()){
+				return "/login";
+			}
+			request.getSession().setAttribute("email", idToken.getPayload().getEmail());
 			request.getSession().setAttribute("gtoken", true);
 			takeme = request.getSession().getAttribute("takeme");
 			request.getSession().removeAttribute("takeme");
@@ -84,6 +91,7 @@ public class IdeaController {
 	public String googleDisconnect(HttpServletRequest request){
 		request.getSession().removeAttribute("gtoken");
 		request.getSession().removeAttribute("takeme");
+		request.getSession().removeAttribute("email");
 		return "/";
 	}
 
