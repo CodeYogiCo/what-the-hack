@@ -2,14 +2,6 @@
 function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
     var profile = googleUser.getBasicProfile();
-
-    console.log("ID: " + profile.getId()); 
-    console.log("Name: " + profile.getName());
-    console.log("Image URL: " + profile.getImageUrl());
-    console.log("Email: " + profile.getEmail());
-
-    console.log();
-    console.log(googleUser.getBasicProfile());
      var email = profile.getEmail().toString();
      
     if(!validateEmail(email)){
@@ -28,7 +20,7 @@ function onSignIn(googleUser) {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
         	
-        	console.log('response----------'+xhr.responseText);
+        	
         	if(xhr.responseText == "/login"){
         		console.log('fraud login');
             	gapi.auth2.getAuthInstance().disconnect();
@@ -38,7 +30,6 @@ function onSignIn(googleUser) {
         	else{
         		sessionStorage.setItem("userObj",profile.getEmail().toString());
                 sessionStorage.setItem("name",profile.getName().toString());
-                console.log('user object updated');
                 SetUserProfile();
         	}
         };
@@ -82,8 +73,6 @@ function signOut() {
         xhr.open('POST', '/tokensignout');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
-            console.log('Signed out as: ' + xhr.responseText);
-            //location.reload();
             SetUserProfile();
         };
         xhr.send();
