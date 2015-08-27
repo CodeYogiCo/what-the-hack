@@ -22,7 +22,7 @@
 	          url: "/idea/"+idea, 
 	          async:false,
 	          cache:false,
-	          success: function(result){z
+	          success: function(result){
 	        	  	 if(result.collabarators.length >= 6)
 	        	  	 {
 	        	  		 $("#btnJoinIdea").val("looks like we are full").css({"background-color": "gray","color":"darkgray","pointer-events":"none"});

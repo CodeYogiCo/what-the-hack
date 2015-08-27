@@ -45,7 +45,7 @@ public class IdeaController {
 	private static final JacksonFactory JSON_FACTORY = new JacksonFactory();
 
 	GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(TRANSPORT, JSON_FACTORY)
-	.setAudience(Arrays.asList("720978887997-5tvk3foplvbv42qpa652josapujtthjj.apps.googleusercontent.com"))
+	.setAudience(Arrays.asList("206415578405-lkjaho2fnso9sa91bdeifdiif9ndtpbm.apps.googleusercontent.com"))
 	.build();
 
 
@@ -113,7 +113,7 @@ public class IdeaController {
 			consumes={"text/xml","application/json"})
 	public ResponseEntity<Status> submitIdea(@RequestBody Idea idea,HttpServletRequest request){
 		String hostName=request.getHeader("Host");
-
+        idea.setEmail(getEmailIdFromSessio(request));
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Status>(new Status(true, "home"), HttpStatus.UNAUTHORIZED);
 		}
@@ -165,6 +165,8 @@ public class IdeaController {
 	@RequestMapping(value="/ideastatus/upvote" ,method=RequestMethod.POST,produces={"application/json"})
 	public ResponseEntity<Status> upVote(@RequestBody Idea idea, HttpServletRequest request)
 	{
+		
+		 //idea.setEmail(getEmailIdFromSessio(request));
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Status>(new Status(false, "UNAUTHORIZED"), HttpStatus.UNAUTHORIZED);
 		}
@@ -176,6 +178,7 @@ public class IdeaController {
 	@RequestMapping(value="/ideastatus/downvote" ,method=RequestMethod.POST)
 	public ResponseEntity<Status> downVote(@RequestBody Idea idea, HttpServletRequest request)
 	{
+		 idea.setEmail(getEmailIdFromSessio(request));
 
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Status>(new Status(false, "UNAUTHORIZED"), HttpStatus.UNAUTHORIZED);
@@ -223,5 +226,9 @@ public class IdeaController {
 		return new ResponseEntity<Boolean>(ideaService.updateCollaborators(ideaNumber, listofCollaboratorsRemoved),HttpStatus.OK);
 	}
 
+	
+	public String getEmailIdFromSessio(HttpServletRequest request){
+		return request.getSession().getAttribute("email").toString();
+	}
 
 }

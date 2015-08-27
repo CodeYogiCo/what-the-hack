@@ -26,7 +26,8 @@ function onSignIn(googleUser) {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/tokensignin');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
+        xhr.onload = function(response) {
+        	console.log(response);
             console.log('Signed in as: ' + xhr.responseText);
         };
         xhr.send('idtoken=' + id_token);
