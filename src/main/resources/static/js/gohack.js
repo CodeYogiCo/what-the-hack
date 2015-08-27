@@ -488,12 +488,14 @@ $(document).ready(function() {
      if(location.href.indexOf("viewIdeas") > 0)
     	 urlIdeas = '/ideas?iof=idea';
      
-     $.ajax({
-         url: urlIdeas,
-         cache: false,
-         async: false,
-         success:updateTable
-     });
+     if(location.href.indexOf("ideaPage") > 0 || location.href.indexOf("viewIdeas") > 0){
+    	  $.ajax({
+    	         url: urlIdeas,
+    	         cache: false,
+    	         async: false,
+    	         success:updateTable
+    	     });
+     }
 
      $("#feature").on("click", function() {
     	 $("ul.nav.nav-tabs li").removeClass("active");
@@ -519,7 +521,8 @@ $(document).ready(function() {
          });
      });
 
-     $("#idea").on("click", function() {
+     $("#idea").on("click", function(e) {
+    	 e.preventDefault();
     	 $("ul.nav.nav-tabs li").removeClass("active");
     	 $("#idea").parent().addClass("active");
        

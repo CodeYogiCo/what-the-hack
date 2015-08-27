@@ -22,7 +22,7 @@
 	          url: "/idea/"+idea, 
 	          async:false,
 	          cache:false,
-	          success: function(result){
+	          success: function(result){z
 	        	  	 if(result.collabarators.length >= 6)
 	        	  	 {
 	        	  		 $("#btnJoinIdea").val("looks like we are full").css({"background-color": "gray","color":"darkgray","pointer-events":"none"});
@@ -171,7 +171,7 @@
     	   if(checkForAuth()){
            
     	   var data = $(".description").text();
-    	   var input = $('<textarea />', { 'name': 'desc', 'id': 'desc', 'class': 'form-control','maxlength':100,'height':$(".description").height() });
+    	   var input = $('<textarea />', { 'name': 'desc', 'id': 'desc', 'class': 'form-control','height':$(".description").height() });
     	   $(".description").replaceWith(input);
     	   $("#desc").text(data);
     	   input.focus();
