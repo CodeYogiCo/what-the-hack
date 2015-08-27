@@ -26,16 +26,24 @@ function onSignIn(googleUser) {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/tokensignin');
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function(response) {
-        	console.log(response);
-            console.log('Signed in as: ' + xhr.responseText);
+        xhr.onload = function() {
+        	
+        	console.log('response----------'+xhr.responseText);
+        	if(xhr.responseText == "/login"){
+        		console.log('fraud login');
+            	gapi.auth2.getAuthInstance().disconnect();
+            	signOut();
+            	return;
+        	}
+        	else{
+        		sessionStorage.setItem("userObj",profile.getEmail().toString());
+                sessionStorage.setItem("name",profile.getName().toString());
+                console.log('user object updated');
+                SetUserProfile();
+        	}
         };
         xhr.send('idtoken=' + id_token);
-   
-        sessionStorage.setItem("userObj",profile.getEmail().toString());
-        sessionStorage.setItem("name",profile.getName().toString());
-        console.log('user object updated');
-        SetUserProfile();
+
     }
     
 };
