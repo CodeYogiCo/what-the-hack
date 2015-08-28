@@ -23,7 +23,7 @@ public interface IdeaService {
 
 	public int collabarateIdea(String email, String ideaNumber);
 
-	public boolean  updateIdea(Idea idea);
+	public boolean  updateIdea(Idea idea, String sessionEmail);
 
 	public List<Idea> getListOfTrendingIdeas();
 

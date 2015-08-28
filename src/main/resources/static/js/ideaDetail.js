@@ -23,28 +23,28 @@
 	          async:false,
 	          cache:false,
 	          success: function(result){
-	        	  	 if(result.collabarators.length >= 6)
+	        	  	 if(result.collabarators.length >= 20)
 	        	  	 {
 	        	  		 $("#btnJoinIdea").val("looks like we are full").css({"background-color": "gray","color":"darkgray","pointer-events":"none"});
 	        	  	 }
 	        	  	 
 	        	  	 var userObj = sessionStorage.getItem("userObj");
 	        	  	 
-	                 console.log(result);
+	                 //console.log(result);
 	                 $(".objective").text(result.objective);
 	                 $(".sectionIdea").text(result.section);
-	                 $(".description").html(result.description);
+	                 $(".description").html(htmlEntities(result.description));
 	                 
 	                 var urls = result.url.split(",");
 	                 console.log(urls);
 	                 var htmlVal = "";
 	                 $.each(urls,function(i,val){
-	                	 htmlVal += "<a href='"+val+"'>"+val+"</a>";
+	                	 htmlVal += "<a href='"+htmlEntities(val)+"'>"+htmlEntities(val)+"</a>";
 	                	 htmlVal += "<br/>";
 	                 });
                 	 $(".url").html(htmlVal);
 	                 
-	                 $(".collaborators").html(result.collabarators.toString());
+	                 $(".collaborators").html(htmlEntities(result.collabarators.toString()));
 	                 var votes = result.ideaUpVote - result.ideaDownVote;
 	                 $("#upvotes").text(result.ideaUpVote);
 	                 $("#downvotes").text(result.ideaDownVote);
@@ -60,8 +60,8 @@
 	                 $.each(result.comments,function(idx,val){
 	                	 if(val.comment!=null)
 	                	 {
-	                		 htmlComments += "<a>"+val.email+":"+"</a>";
-	                		 htmlComments += "<p>"+val.comment+"</p>";
+	                		 htmlComments += "<a>"+htmlEntities(val.email)+":"+"</a>";
+	                		 htmlComments += "<p>"+htmlEntities(val.comment)+"</p>";
 	                	 }
 	                 });
 	                 $(".comments").html(htmlComments);
@@ -69,6 +69,11 @@
 	                 
 	          }
 	    });
+	
+
+	function htmlEntities(str) {
+		    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+		}
 	
        $("#btnCommSubmit").on("click",function(e){
     	   e.preventDefault();
@@ -214,7 +219,7 @@
     		   
     		   if($(".collaborators").text() != ""){
     			   $.each($(".collaborators").text().split(","),function(idx,val){
-    				  htmlData+='<div class="parent-rem" style="display:inline;"><span>'+val+'</span><a class="del-email" data-email='+val+'>X</a></div>'; 
+    				  htmlData+='<div class="parent-rem" style="display:inline;"><span>'+htmlEntities(val)+'</span><a class="del-email" data-email='+htmlEntities(val)+'>X</a></div>'; 
     			   });
     		   }
     		   $(".collaborators").replaceWith(textarea);
@@ -263,7 +268,7 @@
            console.log(urls);
            var htmlVal = "";
            $.each(urls,function(i,val){
-          	 htmlVal += "<a>"+val+"</a>";
+          	 htmlVal += "<a>"+htmlEntities(val)+"</a>";
           	 htmlVal += "<br/>";
            });
            

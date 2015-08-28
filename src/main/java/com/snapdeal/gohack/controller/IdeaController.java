@@ -127,11 +127,13 @@ public class IdeaController {
 			produces={"application/json"},
 			consumes={"text/xml","application/json"})
 	public ResponseEntity<Boolean> updateIdea(@RequestBody Idea idea, HttpServletRequest request){
+		
+		
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Boolean>(false, HttpStatus.UNAUTHORIZED);
 		}
 
-		boolean  updateStatus=ideaService.updateIdea(idea);
+		boolean  updateStatus=ideaService.updateIdea(idea,getEmailIdFromSessio(request));
 		return new ResponseEntity<Boolean>(updateStatus, HttpStatus.OK);
 	}
 
@@ -166,7 +168,7 @@ public class IdeaController {
 	public ResponseEntity<Status> upVote(@RequestBody Idea idea, HttpServletRequest request)
 	{
 		
-		 //idea.setEmail(getEmailIdFromSessio(request));
+		 idea.setEmail(getEmailIdFromSessio(request));
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Status>(new Status(false, "UNAUTHORIZED"), HttpStatus.UNAUTHORIZED);
 		}
@@ -191,7 +193,7 @@ public class IdeaController {
 	@RequestMapping (value="idea/{ideaNumber}/email/{emailId}",method=RequestMethod.POST)
 	public ResponseEntity<Integer> collabarateIdea(@PathVariable ("emailId") String email,
 			@PathVariable ("ideaNumber") String ideaNumber, HttpServletRequest request){
-
+         email=getEmailIdFromSessio(request);
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Integer>(-1, HttpStatus.UNAUTHORIZED);
 		}
@@ -208,7 +210,7 @@ public class IdeaController {
 	@RequestMapping (value="/idea/{ideaNumber}/comment",method=RequestMethod.POST)
 	public @ResponseBody ResponseEntity<Boolean> ideaComment(@PathVariable("ideaNumber") String ideaNumber,
 			@RequestBody Comment comment,HttpServletRequest request){
-
+        comment.setEmail(getEmailIdFromSessio(request));
 		if(!isUserAuthorized(request)){
 			return new ResponseEntity<Boolean>(false, HttpStatus.UNAUTHORIZED);
 		}
@@ -228,6 +230,7 @@ public class IdeaController {
 
 	
 	public String getEmailIdFromSessio(HttpServletRequest request){
+
 		return request.getSession().getAttribute("email").toString();
 	}
 

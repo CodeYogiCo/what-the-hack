@@ -185,12 +185,18 @@ public class IdeaServiceImpl implements IdeaService{
 
 
 	@Override
-	public boolean updateIdea(Idea idea) {
+	public boolean updateIdea(Idea idea,String sessionEmail) {
 		boolean updateStatus=true;
 		try{
-			jdbcTemplate.update(environment.getProperty("sql.updateidea"),
-					new Object[]{idea.getSection(),idea.getObjective(),idea.getDescription(),
-				idea.getUrl(),idea.getIdeaNumber()});
+			String submittedBy= jdbcTemplate.queryForObject("select email from user_ideas where ideaNumber=?",
+					new Object[]{idea.getIdeaNumber()},String.class);
+			if(!submittedBy.equals(sessionEmail))
+				updateStatus=false;
+			else{
+				jdbcTemplate.update(environment.getProperty("sql.updateidea"),
+						new Object[]{idea.getSection(),idea.getObjective(),idea.getDescription(),
+					idea.getUrl(),idea.getIdeaNumber()});
+			}
 		}
 		catch(Exception e){
 			updateStatus=false;
@@ -207,9 +213,9 @@ public class IdeaServiceImpl implements IdeaService{
 		params.put("emails", listofEmails);
 		params.put("ideaNumber", ideaNumber);
 		String  queryToBeExceuted=environment.getProperty("sql.updateCollaborators");
-        try{
+		try{
 			namedParameterJdbcTemplate.update(queryToBeExceuted,params);
-			}
+		}
 		catch(Exception e){
 			status=false;
 		}
