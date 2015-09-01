@@ -26,7 +26,7 @@ public class Idea {
 	public int enabled;
 	
 	public String teamMembers;
-	
+
 	
 	
 	public String getTeamMembers() {
@@ -230,23 +230,32 @@ public class Idea {
 		return "Idea [ideaNumber=" + ideaNumber + ", ideaStatus=" + ideaStatus
 				+ ", ideaUpVote=" + ideaUpVote + ", ideaDownVote="
 				+ ideaDownVote + ", submittedOn=" + submittedOn + ", count="
-				+ count + ", ideaTeamEmailId=" + ideaTeamEmailId
-				+ ", collabarators=" + collabarators + ", ideaOverview="
-				+ ideaOverview + ", email=" + email + ", section=" + section
-				+ ", objective=" + objective + ", description=" + description
-				+ ", url=" + url + "]";
+				+ count + ", category=" + category + ", comment=" + comment
+				+ ", enabled=" + enabled + ", teamMembers=" + teamMembers
+				+ ", teamsize=" + teamsize + ", comments=" + comments
+				+ ", ideaTeamEmailId=" + ideaTeamEmailId + ", collabarators="
+				+ collabarators + ", ideaOverview=" + ideaOverview + ", email="
+				+ email + ", section=" + section + ", objective=" + objective
+				+ ", description=" + description + ", url=" + url
+				+ ", getTeamMembers()=" + getTeamMembers() + ", getTeamsize()="
+				+ getTeamsize() + ", getEnabled()=" + getEnabled()
+				+ ", getComments()=" + getComments() + ", getComment()="
+				+ getComment() + ", getCategory()=" + getCategory()
+				+ ", getIdeaTeamEmailId()=" + getIdeaTeamEmailId()
+				+ ", getCollabarators()=" + getCollabarators()
+				+ ", getCount()=" + getCount() + ", getSubmittedOn()="
+				+ getSubmittedOn() + ", getIdeaStatus()=" + getIdeaStatus()
+				+ ", getIdeaUpVote()=" + getIdeaUpVote()
+				+ ", getIdeaDownVote()=" + getIdeaDownVote()
+				+ ", getIdeaNumber()=" + getIdeaNumber() + ", getEmail()="
+				+ getEmail() + ", getUrl()=" + getUrl()
+				+ ", getIdeaOverview()=" + getIdeaOverview()
+				+ ", getSection()=" + getSection() + ", getObjective()="
+				+ getObjective() + ", getDescription()=" + getDescription()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
 
-	
-
-
-
-
-
-
-	
-	
-	
 	
 
 }
