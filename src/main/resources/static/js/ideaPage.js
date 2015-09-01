@@ -94,7 +94,7 @@ $(document).ready(function() {
     	   var head='';
     	     head += '<thead><tr><th class=\"num\">#<\/th>';
     	     head += '                     <th>Topic\/Submitted By<\/th>';
-    	     head += '                     <th>Objective<\/th> <th>upvotes<\/th><th>downvotes<\/th><th>Submitted On<\/th><\/tr><\/thead>';
+    	     head += '                     <th>Objective<\/th> <th>upvotes<\/th><th>downvotes<\/th><th>Team Size<\/th><th>Submitted On<\/th><\/tr><\/thead>';
     	     
 		 var noofElements = 10;
     	 
@@ -180,7 +180,7 @@ $(document).ready(function() {
                   '<td class="num"><a>' + val.ideaUpVote + '</a></td>' +
                   '<td class="num"><a>' + val.ideaDownVote + '</a></td>' +
 //                  '<td class="num"><a>' + val.ideaStatus + '</a></td>' +
-                  /*    '<td class="num"><a>0</a></td>'+ */
+                      '<td class="num"><a>'+val.teamsize+'</a></td>'+ 
                   '<td><a>' + moment(val.submittedOn).format("MMMM Do YYYY") + '</a></td></tr></tbody>';
               // console.log(html);
               $('table.table').append(html);

@@ -70,7 +70,8 @@
 	});
     }
    
-    updateLove();
+    if($(".heartbeat").length > 0)
+    	updateLove();
     
     $("#btnLove").on("click",function(){
     	$.ajax({

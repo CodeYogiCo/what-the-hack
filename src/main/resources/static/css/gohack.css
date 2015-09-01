@@ -10056,8 +10056,9 @@ section#analytics{
     transition: all 300ms linear; 
 }
 .ca-menu li:hover{
-    border-color: #f05f40;
-    background: #000;
+    border-color: #fff;
+    background: #f05f40;
+    color:#fff;
 }
 .ca-menu li:hover .ca-icon{
     color: #f05f40;
@@ -10065,7 +10066,7 @@ section#analytics{
     font-size: 0px;
 }
 .ca-menu li:hover .ca-main{
-    color: #f05f40;
+    color: #fff;
     font-size: 14px;
 }
 .ca-menu li:hover .ca-sub{
@@ -10645,10 +10646,6 @@ body.main-ideas{
 
 #ideasTable tbody.link a{
 	color:#ed431f;
-}
-
-#ideasTable .nav.nav-tabs #trending{
-	  margin-top: 12px;
 }
 
 #btnIdeaSubmit{
