@@ -26,6 +26,18 @@ public class Idea {
 	public int enabled;
 	
 	
+	public int teamsize;
+	
+	
+	
+
+	public int getTeamsize() {
+		return teamsize;
+	}
+
+	public void setTeamsize(int teamsize) {
+		this.teamsize = teamsize;
+	}
 
 	public int getEnabled() {
 		return enabled;
