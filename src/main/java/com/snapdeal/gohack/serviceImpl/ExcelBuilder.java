@@ -26,10 +26,13 @@ public class ExcelBuilder {
   
     public HSSFWorkbook buildExcelDocument(){
     	
-    	List<Idea> listofIdeas= jdbcTemplate.query("SELECT *  FROM user_ideas AS t1 INNER JOIN idea_status "
-				+ "AS t2 ON t1.ideaNumber = t2.ideaNumber ",
+    	List<Idea> listofIdeas= jdbcTemplate.query("SELECT  t1.*,group_concat(t3.ideaTeamEmailId) as teamMembers FROM "
+				+ "user_ideas AS t1 INNER JOIN idea_status AS t2 ON t1.ideaNumber = t2.ideaNumber "
+                + "left join idea_team AS t3 ON t1.ideaNumber=t3.ideaNumber group by 1 "+
+                " order by submittedOn desc",
 				new BeanPropertyRowMapper(Idea.class));
-		
+    	
+    	
         HSSFWorkbook workbook= new HSSFWorkbook();
         // create a new Excel sheet
         HSSFSheet sheet = workbook.createSheet("Ideas");
@@ -62,16 +65,13 @@ public class ExcelBuilder {
          
         header.createCell(3).setCellValue("Section");
         header.getCell(3).setCellStyle(style);
-         
-        header.createCell(4).setCellValue("Votes");
+               
+        header.createCell(4).setCellValue("Collaborators");
         header.getCell(4).setCellStyle(style);
         
-        header.createCell(5).setCellValue("Status");
+        
+        header.createCell(5).setCellValue("Description");
         header.getCell(5).setCellStyle(style);
-        
-        
-        header.createCell(6).setCellValue("Description");
-        header.getCell(6).setCellStyle(style);
       
          
         // create data rows
@@ -83,9 +83,8 @@ public class ExcelBuilder {
             aRow.createCell(1).setCellValue(idea.getEmail());
             aRow.createCell(2).setCellValue(idea.getObjective());
             aRow.createCell(3).setCellValue(idea.getSection());
-            aRow.createCell(4).setCellValue(idea.getIdeaUpVote()-idea.getIdeaDownVote());
-            aRow.createCell(5).setCellValue(idea.getIdeaStatus());
-            aRow.createCell(6).setCellValue(idea.getDescription());
+            aRow.createCell(4).setCellValue(idea.getTeamMembers());
+            aRow.createCell(5).setCellValue(idea.getDescription());
                 
             
         }

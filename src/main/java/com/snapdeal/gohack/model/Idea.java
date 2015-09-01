@@ -25,7 +25,18 @@ public class Idea {
 	
 	public int enabled;
 	
+	public String teamMembers;
 	
+	
+	
+	public String getTeamMembers() {
+		return teamMembers;
+	}
+
+	public void setTeamMembers(String teamMembers) {
+		this.teamMembers = teamMembers;
+	}
+
 	public int teamsize;
 	
 	
