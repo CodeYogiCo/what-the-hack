@@ -113,7 +113,7 @@ $.fn.easyPaginate = function (options) {
         	   var head='';
       	     head += '<thead><tr><th class=\"num\">#<\/th>';
       	     head += '                     <th>Topic\/Submitted By<\/th>';
-      	     head += '                     <th>Objective<\/th><th>Section<\/th> <th>votes<\/th> <th>Submitted On<\/th><\/tr><\/thead>';
+      	     head += '                     <th>Objective<\/th><th>upvotes<\/th> <th>downvotes<\/th> <th>Submitted On<\/th><\/tr><\/thead>';
 
     		 $('table.table').prepend(head);
         }
