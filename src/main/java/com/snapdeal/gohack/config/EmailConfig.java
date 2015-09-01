@@ -19,7 +19,7 @@ public class EmailConfig {
 	@Value("${email.port:587}")
 	private String port;
 
-	@Value("${email.username:wth@snapdeal.com}")
+	@Value("${email.username:wth_mailer@snapdeal.com}")
 	private String userName;
 
 	@Value("${email.password:password}")

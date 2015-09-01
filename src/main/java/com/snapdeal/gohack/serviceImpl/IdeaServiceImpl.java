@@ -12,6 +12,7 @@ import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.mozilla.javascript.ObjArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -303,6 +304,26 @@ public class IdeaServiceImpl implements IdeaService{
 			status=false;
 		}
 		return status;
+	}
+
+
+	@Override
+	public boolean love(String ipAddress) {
+		boolean status=true;
+		try{
+			jdbcTemplate.update(environment.getProperty("sql.love"),new Object[]{ipAddress});
+		}
+		catch(Exception e){
+		   System.out.println(e);
+			status=false;
+		}
+		return status;
+	}
+
+
+	@Override
+	public int getLoveCount() {
+		return jdbcTemplate.queryForObject("SELECT sum(loves) from wth_love",Integer.class);
 	}
 
 

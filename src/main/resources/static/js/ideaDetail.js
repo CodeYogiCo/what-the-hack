@@ -16,7 +16,7 @@
 		}
 	   
 	   var idea = $.urlParam('idea');
-	   console.log("idea no : "+idea);
+	   //console.log("idea no : "+idea);
 	
 	   $.ajax({
 	          url: "/idea/"+idea, 
@@ -223,7 +223,7 @@
     			   });
     		   }
     		   $(".collaborators").replaceWith(textarea);
-    		   console.log("htmlData"+htmlData);
+    		   //console.log("htmlData"+htmlData);
     		   $("#collab").html(htmlData);
     		   $("#collab").focus();
     	   }
@@ -239,14 +239,14 @@
        
        $(document).on("click","#removeEmails",function(e){
     	   var emails = emailsDel.replace(/,\s*$/, "");
-    	   console.log("emails"+emails);
+    	   //console.log("emails"+emails);
     	   
     	   $.ajax({
       			url:"/update/idea/"+idea+"/collaborators/"+emails+"/",
       			cache:false,
       		    beforeSend: function(xhr){xhr.setRequestHeader('content-type', 'application/json');},
 	   		   	success:function(response){
-	   		   		console.log(response);
+	   		   		//console.log(response);
 	   		   		$(".join-label").text("you have edited successfully!");
 	   		   		emailsDel = '';
 	   		   		location.reload();
@@ -265,7 +265,7 @@
        
        $(document).on("blur","#links",function(e){
     	   var urls = $("#links").val().split(",");
-           console.log(urls);
+           //console.log(urls);
            var htmlVal = "";
            $.each(urls,function(i,val){
           	 htmlVal += "<a>"+htmlEntities(val)+"</a>";
@@ -326,7 +326,7 @@
 			   else if(upordown == "votedown"){
 				   var downURL =  "/ideastatus/downvote";
 				   var ideaObj = {ideaNumber:idea,email:email};
-				    console.log("downurl :"+downURL);
+				    //console.log("downurl :"+downURL);
 				    $.ajax({
 		    			url:downURL,
 		    			type:"POST",
@@ -385,7 +385,7 @@
    		    beforeSend: function(xhr){xhr.setRequestHeader('content-type', 'application/json');},
    			data:JSON.stringify(ideaObj),
 		   	success:function(response){
-		   		console.log(response);
+		   		//console.log(response);
 		   		$(".join-label").text("you have edited successfully!");
 		   	}
 		   });

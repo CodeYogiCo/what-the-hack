@@ -234,4 +234,20 @@ public class IdeaController {
 		return request.getSession().getAttribute("email").toString();
 	}
 
+	@RequestMapping (value="/register/love",method=RequestMethod.GET)
+	public ResponseEntity<Boolean> love(HttpServletRequest request){
+		
+		 String ipAddress = request.getHeader("X-FORWARDED-FOR");  
+		   if (ipAddress == null) {  
+			   ipAddress = request.getRemoteAddr();  
+		   }
+	 return new ResponseEntity<Boolean>(ideaService.love(ipAddress),HttpStatus.OK);	
+	}
+	
+	@RequestMapping (value="/loves",method=RequestMethod.GET)
+	public int loves(){
+		return ideaService.getLoveCount();
+	}
+
+
 }

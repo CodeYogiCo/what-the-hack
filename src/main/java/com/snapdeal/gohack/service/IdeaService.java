@@ -32,5 +32,9 @@ public interface IdeaService {
 	public boolean comment(String ideaNumber,Comment comment);
 	
 	public boolean updateCollaborators(String ideaNumber,String listofCollaboratorsRemoved);
+	
+	public boolean love(String ipAddress);
+
+	public int getLoveCount();
 
 }
