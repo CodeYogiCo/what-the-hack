@@ -839,3 +839,7 @@ margin-top: 0px;
   @keyframes beat{
 	to { transform: scale(1.4); }
 }
+
+.bg-primary#mentor{
+	  padding: 40px 0 !important;
+}
