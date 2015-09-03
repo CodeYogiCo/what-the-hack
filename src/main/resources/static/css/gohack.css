@@ -10126,6 +10126,10 @@ margin-top: 0px;
   @keyframes beat{
 	to { transform: scale(1.4); }
 }
+
+.bg-primary#mentor{
+	  padding: 40px 0 !important;
+}
 /*
 Author: W3layout
 Author URL: http://w3layouts.com
@@ -10650,6 +10654,8 @@ body.main-ideas{
 
 #btnIdeaSubmit{
 	  width: 14%;
+	  pointer-events: none;
+  	  background-color: gray;
 }
 
 #ideaDetail .section p{
@@ -10715,6 +10721,8 @@ body.main-ideas{
 	color:#fff !important;
 	font-weight:bold;
 }
+
+
 
 @media (max-width: 768px) {
 	.fa-lightbulb-o,.fa-bug{
