@@ -73,15 +73,15 @@ public class ExcelController {
 
 	public void downloadpdf(HttpServletResponse response,HttpServletRequest request) throws IOException, DocumentException {
 		final String fileName="Idea.pdf";
-		final ServletContext servletContext = request.getSession().getServletContext();
-		final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
-		final String temperotyFilePath = tempDirectory.getAbsolutePath();
+//		final ServletContext servletContext = request.getSession().getServletContext();
+//		final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+//		final String temperotyFilePath = tempDirectory.getAbsolutePath();
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition","attachment; filename="+fileName);
 
-		pdfBuilder.buildPdf(temperotyFilePath+"\\"+fileName);
+		pdfBuilder.buildPdf(fileName);
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		baos = convertPDFToByteArrayOutputStream(temperotyFilePath+"\\"+fileName);
+		baos = convertPDFToByteArrayOutputStream(fileName);
 		OutputStream os = response.getOutputStream();
 		baos.writeTo(os);
 		os.flush();

@@ -116,6 +116,11 @@ public class PdfBuilder {
 			addEmptyLine(paragraph, 1);
 			paragraph.add(new Phrase(eachIdea.getTeamMembers()));
 			addEmptyLine(paragraph, 1);
+			
+			paragraph.add(new Phrase("Urls",catFont));
+			addEmptyLine(paragraph, 1);
+			paragraph.add(new Phrase(eachIdea.getUrl()));
+			addEmptyLine(paragraph, 1);
 				
 			document.add(paragraph);
 		}
