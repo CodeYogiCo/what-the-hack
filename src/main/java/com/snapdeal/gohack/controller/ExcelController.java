@@ -16,6 +16,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itextpdf.text.DocumentException;
@@ -33,7 +34,22 @@ public class ExcelController {
 	private PdfBuilder pdfBuilder;
 
 
-	@RequestMapping(value = "/downloadExcel", method = RequestMethod.GET)
+	@RequestMapping(value = "/download", method = RequestMethod.GET)
+	public void download(HttpServletResponse response,HttpServletRequest request,
+			@RequestParam (value="format",required=false) String format) throws IOException, DocumentException{
+		if(format==null){
+			format="excel";
+		}
+		if(format.equals("excel")){
+			downloadExcel(response);
+		}
+		if(format.equals("pdf")){
+			downloadpdf(response, request);	
+		}
+
+	}
+
+
 
 	public void downloadExcel(HttpServletResponse response) throws IOException {
 
@@ -54,28 +70,26 @@ public class ExcelController {
 	}
 
 
-	@RequestMapping(value = "/downloadPdf", method = RequestMethod.GET)
 
 	public void downloadpdf(HttpServletResponse response,HttpServletRequest request) throws IOException, DocumentException {
 		final String fileName="Idea.pdf";
 		final ServletContext servletContext = request.getSession().getServletContext();
-	    final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
-	    final String temperotyFilePath = tempDirectory.getAbsolutePath();
+		final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+		final String temperotyFilePath = tempDirectory.getAbsolutePath();
 		response.setContentType("application/pdf");
 		response.setHeader("Content-Disposition","attachment; filename="+fileName);
-	
+
 		pdfBuilder.buildPdf(temperotyFilePath+"\\"+fileName);
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        baos = convertPDFToByteArrayOutputStream(temperotyFilePath+"\\"+fileName);
-        OutputStream os = response.getOutputStream();
-        baos.writeTo(os);
-        os.flush();
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		baos = convertPDFToByteArrayOutputStream(temperotyFilePath+"\\"+fileName);
+		OutputStream os = response.getOutputStream();
+		baos.writeTo(os);
+		os.flush();
+
+	}
 	
-
-
-
-
-	}private ByteArrayOutputStream convertPDFToByteArrayOutputStream(String fileName) {
+	
+	private ByteArrayOutputStream convertPDFToByteArrayOutputStream(String fileName) {
 
 		InputStream inputStream = null;
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
