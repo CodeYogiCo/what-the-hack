@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -324,6 +325,14 @@ public class IdeaServiceImpl implements IdeaService{
 	@Override
 	public int getLoveCount() {
 		return jdbcTemplate.queryForObject("SELECT sum(loves) from wth_love",Integer.class);
+	}
+
+
+	@Override
+	public List<Idea> getIdeaByEmail(String email) {
+		List<Idea> ideas= jdbcTemplate.query(environment.getProperty("sql.ideasByEmail"),new Object[]{email},
+				new BeanPropertyRowMapper(Idea.class));
+		return ideas;
 	}
 
 

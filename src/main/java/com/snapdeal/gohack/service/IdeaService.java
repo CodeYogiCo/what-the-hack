@@ -2,6 +2,8 @@ package com.snapdeal.gohack.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.snapdeal.gohack.model.CountInsight;
 import com.snapdeal.gohack.model.Idea;
 import com.snapdeal.gohack.model.Status;
@@ -36,5 +38,7 @@ public interface IdeaService {
 	public boolean love(String ipAddress);
 
 	public int getLoveCount();
+
+	public List<Idea> getIdeaByEmail(String email);
 
 }

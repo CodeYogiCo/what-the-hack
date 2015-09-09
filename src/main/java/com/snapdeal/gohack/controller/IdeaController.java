@@ -248,6 +248,14 @@ public class IdeaController {
 	public int loves(){
 		return ideaService.getLoveCount();
 	}
+	
+	
+	@RequestMapping (value="/idea",method=RequestMethod.GET)
+	public List<Idea> getIdeaByEmail(HttpServletRequest request){
+
+		String email=getEmailIdFromSessio(request);
+		return ideaService.getIdeaByEmail(email);
+	}
 
 
 }
