@@ -58,8 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	  authorizeRequests().antMatchers(HttpMethod.POST, "/idea/**").permitAll().
 	  antMatchers("/admin/**").authenticated()
 				.and()
-		  .formLogin().loginPage("/login").failureUrl("/idea")
-		  .usernameParameter("email").passwordParameter("password").defaultSuccessUrl("/home")
+		  .formLogin().loginPage("/login").failureUrl("/error")
+		  .usernameParameter("email").passwordParameter("password").defaultSuccessUrl("/admin-welcome")
 		.and()
 		  .logout().logoutSuccessUrl("/login?logout")
 		.and()

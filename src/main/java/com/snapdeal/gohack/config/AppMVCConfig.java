@@ -22,6 +22,7 @@ public class AppMVCConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/viewIdeas").setViewName("ideas");
         registry.addViewController("/wth-hackFeature").setViewName("hackFeature");
         registry.addViewController("/wth-numbers").setViewName("count");
+        registry.addViewController("/admin-welcome").setViewName("admin-welcome");
         
        }
   
