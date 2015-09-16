@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.snapdeal.gohack.serviceImpl.Comment;
 
+
 public class Idea {
+	
 	
 	public String ideaNumber;
 	
