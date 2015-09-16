@@ -101,7 +101,11 @@
  	          data:JSON.stringify($("#submitCommentForm").serializeObject()),
  	          beforeSend: function(xhr){xhr.setRequestHeader('content-type', 'application/json');},
  	          success: function(result){
- 	        	  location.reload();
+ 	        	  //successful updation of comment
+ 	        	  console.log("updation of comment:");
+ 	        	  console.log(result);
+ 	        	  socket.emit("new message",{"idea":idea,"comment":$("#submitCommentForm").serializeObject()});
+ 	        	  location.reload();	  
  	          }
     	   });
        });

@@ -31,6 +31,8 @@ function onSignIn(googleUser) {
         		sessionStorage.setItem("userObj",profile.getEmail().toString());
                 sessionStorage.setItem("name",profile.getName().toString());
                 SetUserProfile();
+                //on successful, adding the socket to the list
+                socket.emit("add user",profile.getEmail().toString());
         	}
         };
         xhr.send('idtoken=' + id_token);
@@ -62,9 +64,13 @@ function SetUserProfile(){
 
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
+    var emailId =  sessionStorage.getItem("userObj").toString();
+    
     sessionStorage.removeItem("userObj");
     sessionStorage.removeItem("name");
    
+    socket.emit("disconnect user",emailId);
+    
     auth2.signOut().then(function() {
         console.log('User signed out.');
         console.log(auth2);
