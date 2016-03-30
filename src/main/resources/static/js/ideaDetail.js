@@ -31,18 +31,18 @@
 	        	  	 var userObj = sessionStorage.getItem("userObj");
 	        	  	 
 	                 //console.log(result);
-	                 $(".objective").text(result.objective);
+	                 //$(".objective").text(result.ideaOverview);
 	                 $(".sectionIdea").text(result.section);
 	                 $(".description").html(htmlEntities(result.description));
 	                 
-	                 var urls = result.url.split(",");
-	                 console.log(urls);
-	                 var htmlVal = "";
-	                 $.each(urls,function(i,val){
-	                	 htmlVal += "<a href='"+htmlEntities(val)+"'>"+htmlEntities(val)+"</a>";
-	                	 htmlVal += "<br/>";
-	                 });
-                	 $(".url").html(htmlVal);
+//	                 var urls = result.url.split(",");
+//	                 console.log(urls);
+//	                 var htmlVal = "";
+//	                 $.each(urls,function(i,val){
+//	                	 htmlVal += "<a href='"+htmlEntities(val)+"'>"+htmlEntities(val)+"</a>";
+//	                	 htmlVal += "<br/>";
+//	                 });
+//                	 $(".url").html(htmlVal);
 	                 
 	                 $(".collaborators").html(htmlEntities(result.collabarators.toString()));
 	                 var votes = result.ideaUpVote - result.ideaDownVote;
