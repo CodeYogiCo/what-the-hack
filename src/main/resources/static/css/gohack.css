@@ -10654,8 +10654,8 @@ body.main-ideas{
 
 #btnIdeaSubmit{
 	  width: 14%;
-	  pointer-events: none;
-  	  background-color: gray;
+	  /*pointer-events: none;
+  	  background-color: gray;*/
 }
 
 #ideaDetail .section p{
