@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 
 
 @Configuration
-@PropertySource("file:${user.home}/properties/platform.properties")
+@PropertySource("file:${user.home}/properties/platform_wth.properties")
 public class DbConfig {
 
 	@Resource

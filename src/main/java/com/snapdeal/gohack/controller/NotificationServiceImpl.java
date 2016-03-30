@@ -11,9 +11,12 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
 import com.snapdeal.gohack.model.UserWebRegistration;
 
+
+@Component
 public class NotificationServiceImpl implements NotificationService{
     
     @Autowired
@@ -29,8 +32,7 @@ public class NotificationServiceImpl implements NotificationService{
         try{
         jdbcTemplate.update(environment.getProperty("sql.userwebRegistration"),
                 new Object[] {
-                        userReg.getUserIdentity(),
-                        userReg.getRegistrationId(),
+                       userReg.getRegistrationId(),
                         userReg.getBrowserType(),
                         userReg.getBrowserVersion(),
                         userReg.getUserAgentInfo() });
