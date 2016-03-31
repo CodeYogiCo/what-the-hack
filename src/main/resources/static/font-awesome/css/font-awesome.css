@@ -1281,6 +1281,10 @@
 .fa-bug:before {
   content: "\f188";
 }
+
+.fa-users:before {
+  content: "\f188";
+}
 .fa-vk:before {
   content: "\f189";
 }
