@@ -71,7 +71,7 @@
                         headers: {
                             'Content-type': 'application/json;charset=utf-8',
                         }, 
-                        url: '/webnotification/user/register',
+                        url: '/web/user/register',
                         data: JSON.stringify(registerInfo) ,
                         dataType: 'json',
                         success: function(data, textStatus, jqXHR){
