@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 public class AppConfig {
 	
 	
-	@Bean
+	@Bean(name="threadPool")
 	public ThreadPoolTaskExecutor taskExecutor() {
 		ThreadPoolTaskExecutor threadPool = new ThreadPoolTaskExecutor();
 		threadPool.setCorePoolSize(5);

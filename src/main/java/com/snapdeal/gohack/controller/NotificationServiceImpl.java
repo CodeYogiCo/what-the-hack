@@ -16,14 +16,17 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 import com.snapdeal.gohack.model.NotificationDataDTO;
 import com.snapdeal.gohack.model.NotificationResponseDTO;
 import com.snapdeal.gohack.model.UserWebRegistration;
 import com.snapdeal.gohack.model.UserWebRegistrationDTO;
+import com.snapdeal.gohack.service.IwebNotificationService;
 
 @Component
+@EnableAsync
 public class NotificationServiceImpl implements NotificationService {
 
     @Autowired
@@ -31,6 +34,9 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Resource
     org.springframework.core.env.Environment environment;
+    
+    @Autowired
+    IwebNotificationService webNotificationService;
 
     @Override
     public UserWebRegistrationDTO doUserWebRegsitration(UserWebRegistration userReg) throws ServiceException {
@@ -49,7 +55,6 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public NotificationResponseDTO push(NotificationDataDTO pushData) throws ServiceException {
         List<UserWebRegistration> listOfRegistrationId = fetchRegistrationId();
-        System.out.println(listOfRegistrationId);
         NotificationResponseDTO notificationResponse = new NotificationResponseDTO();
         try {
             for (UserWebRegistration eachRegistrationId : listOfRegistrationId) {
@@ -57,6 +62,7 @@ public class NotificationServiceImpl implements NotificationService {
                         new Object[] { eachRegistrationId.getRegistrationId(),UUID.randomUUID().toString(), pushData.getPushTitle(), pushData.getPushMessage(), pushData.getPushUrl() });
             }
             notificationResponse.setMessage("successfully pushed");
+            webNotificationService.userlookup(listOfRegistrationId);
         } catch (Exception e) {
             throw new ServiceException(e.getMessage());
         }
