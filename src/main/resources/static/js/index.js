@@ -27,7 +27,7 @@ $(document).ready(function () {
         {text: "Votes", count: insightData.totalVoteCount},
         {text: "Upvotes", count: insightData.upVoteCount},
         {text: "Downvotes", count:insightData.downVoteCount},
-        {text: "Features", count: insightData.featureCount},
+//        {text: "Features", count: insightData.featureCount},
         {text: "Comments", count: insightData.commentCount},
          ],
       eval: function (item) {return item.count;},

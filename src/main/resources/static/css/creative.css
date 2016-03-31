@@ -16,7 +16,7 @@ body {
 
 hr {
     max-width: 50px;
-    border-color: #f05f40;
+    border-color: #0096db;
     border-width: 3px;
 }
 
@@ -25,7 +25,7 @@ hr.light {
 }
 
 a {
-    color: #f05f40;
+    color: #0096db;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -57,7 +57,7 @@ p {
 }
 /*
 #impress p:first-child{
-    color:#f05f40;
+    color:#0096db;
 }*/
 
 /*#impress p:nth-child(2){
@@ -65,7 +65,7 @@ p {
 }*/
 
 .bg-primary {
-    background-color: #f05f40;
+    background-color: #0096db;
 }
 
 .bg-dark {
@@ -102,7 +102,7 @@ aside {
     text-transform: uppercase;
     font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
     font-weight: 700;
-    color: #f05f40;
+    color: #0096db;
     height:60px;
 }
 
@@ -121,12 +121,12 @@ aside {
 
 .navbar-default .nav > li>a:hover,
 .navbar-default .nav>li>a:focus:hover {
-    color: #f05f40;
+    color: #0096db;
 }
 
 .navbar-default .nav > li.active>a,
 .navbar-default .nav>li.active>a:focus {
-    color: #f05f40!important;
+    color: #0096db!important;
     background-color: transparent;
 }
 
@@ -167,7 +167,7 @@ aside {
 
     .navbar-default.affix .navbar-header .navbar-brand {
         font-size: 14px;
-        color: #f05f40;
+        color: #0096db;
     }
 
     .navbar-default.affix .navbar-header .navbar-brand:hover,
@@ -182,7 +182,7 @@ aside {
 
     .navbar-default.affix .nav > li>a:hover,
     .navbar-default.affix .nav>li>a:focus:hover {
-        color: #f05f40;
+        color: #0096db;
     }
 }
 
@@ -192,7 +192,7 @@ header {
     min-height: auto;
     text-align: center;
     color: #fff;
-    background-image: url(../images/header.jpg);
+    background-image: url(../images/header1.jpg);
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -225,6 +225,10 @@ header .header-content .header-content-inner hr {
     margin: 30px auto;
 }
 
+header .header-content .header-content-inner a
+{
+	margin-right: 1.5%;
+}
 header .header-content .header-content-inner p {
     margin-bottom: 50px;
     font-size: 16px;
@@ -344,7 +348,7 @@ header .header-content .header-content-inner p {
 }
 
 .text-primary {
-    color: #f05f40;
+    color: #0096db;
 }
 
 .no-gutter > [class*=col-] {
@@ -406,9 +410,9 @@ fieldset[disabled] .btn-default.active {
 }
 
 .btn-primary {
-    border-color: #f05f40;
+    border-color: #0096db;
     color: #fff;
-    background-color: #f05f40;
+    background-color: #0096db;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
@@ -449,12 +453,12 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-    border-color: #f05f40;
-    background-color: #f05f40;
+    border-color: #0096db;
+    background-color: #0096db;
 }
 
 .btn-primary .badge {
-    color: #f05f40;
+    color: #0096db;
     background-color: #fff;
 }
 
@@ -623,7 +627,7 @@ a#hackFeature:hover{
 }
 
 .collapse.navbar-collapse ul li a{
-	  background-color: #f05f40;
+	  background-color: #0096db;
 }
 
 .main-home .collapse.navbar-collapse ul li a{
@@ -775,12 +779,12 @@ section#analytics{
 }
 .ca-menu li:hover{
     border-color: #fff;
-    background: #f05f40;
+    background: #0096db;
     color:#fff;
 }
 .ca-menu li:hover .ca-icon{
-    color: #f05f40;
-    text-shadow: 0px 0px 1px #f05f40;
+    color: #0096db;
+    text-shadow: 0px 0px 1px #0096db;
     font-size: 0px;
 }
 .ca-menu li:hover .ca-main{
@@ -811,6 +815,10 @@ section#analytics{
     text-shadow:1px 1px 1px rgba(255,255,255,0.9);
 	text-align:center;
 	font-weight:400;
+}
+
+.margin20P{
+	margin-top:40%;
 }
 
 .agenda h1 span{
