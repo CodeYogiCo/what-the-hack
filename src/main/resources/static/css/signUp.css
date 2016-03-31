@@ -59,7 +59,7 @@ a:hover {
   color: #ffffff;
 }
 .tab-group .active a {
- background: #f05f40;
+ background: #0096db;
   color: #ffffff;
 }
 
@@ -159,7 +159,7 @@ textarea {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background: #f05f40;
+  background: #0096db;
   color: #ffffff;
   -webkit-transition: all 0.5s ease;
           transition: all 0.5s ease;

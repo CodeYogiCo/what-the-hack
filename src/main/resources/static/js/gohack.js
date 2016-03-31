@@ -467,7 +467,7 @@ $(document).ready(function() {
     	   var head='';
     	     head += '<thead><tr><th class=\"num\">#<\/th>';
     	     head += '                     <th>Topic\/Submitted By<\/th>';
-    	     head += '                     <th>Objective<\/th> <th>upvotes<\/th><th>downvotes<\/th><th>Team Size<\/th><th>Submitted On<\/th><\/tr><\/thead>';
+    	     head += '                     <th>upvotes<\/th><th>downvotes<\/th><th>Team Size<\/th><th>Submitted On<\/th><\/tr><\/thead>';
     	     
 		 var noofElements = 10;
     	 
@@ -497,17 +497,17 @@ $(document).ready(function() {
     	     });
      }
 
-     $("#feature").on("click", function() {
-    	 $("ul.nav.nav-tabs li").removeClass("active");
-    	 $("#feature").parent().addClass("active");
-
-         $.ajax({
-             url: "/ideas?iof=feature",
-             cache: false,
-             async: false,
-             success:updateTable
-         });
-     });
+//     $("#feature").on("click", function() {
+//    	 $("ul.nav.nav-tabs li").removeClass("active");
+//    	 $("#feature").parent().addClass("active");
+//
+//         $.ajax({
+//             url: "/ideas?iof=feature",
+//             cache: false,
+//             async: false,
+//             success:updateTable
+//         });
+//     });
      
      $("#trending").on("click",function(){
     	 $("ul.nav.nav-tabs li").removeClass("active");
@@ -548,7 +548,7 @@ $(document).ready(function() {
               html += '<td colspan="6"><a href="/ideaDetail?idea=' + val.ideaNumber + '">' + val.ideaOverview +
                   '</a></td></tr>';
               html += '<tr><td></td><td><a href="/ideaDetail?idea=' + val.ideaNumber + '">' + val.email +
-                  '</a></td><td><a>' + val.objective + '</a></td>' +
+       //           '</a></td><td><a>' + val.objective + '</a></td>' +
 //                  '<td><a>' + val.section + '</a></td>' +
                   '<td class="num"><a>' + val.ideaUpVote + '</a></td>' +
                   '<td class="num"><a>' + val.ideaDownVote + '</a></td>' +
@@ -724,30 +724,30 @@ function export2excel(){
     
     
     
-    function updateLove(){
-    $.ajax({
-		url : "/loves",
-		cache:false,
-		success:function(data){
-			 $("#btnLove div").text(data);
-		}
-	});
-    }
-   
-    if($(".heartbeat").length > 0)
-    	updateLove();
-    
-    $("#btnLove").on("click",function(){
-    	$.ajax({
-    		url : "/register/love",
-    		cache:false,
-    		success:function(){
-    			$("#btnLove").css({"color":"#EE0000"}).removeClass("fa-heart-o").addClass("fa-heart");
-    			$("#btnLove").css({"animation":"beat 0.5s infinite alternate"});
-    			 updateLove();
-    		}
-    	});
-    });
+//    function updateLove(){
+//    $.ajax({
+//		url : "/loves",
+//		cache:false,
+//		success:function(data){
+//			 $("#btnLove div").text(data);
+//		}
+//	});
+//    }
+//   
+//    if($(".heartbeat").length > 0)
+//    	updateLove();
+//    
+//    $("#btnLove").on("click",function(){
+//    	$.ajax({
+//    		url : "/register/love",
+//    		cache:false,
+//    		success:function(){
+//    			$("#btnLove").css({"color":"#EE0000"}).removeClass("fa-heart-o").addClass("fa-heart");
+//    			$("#btnLove").css({"animation":"beat 0.5s infinite alternate"});
+//    			 updateLove();
+//    		}
+//    	});
+//    });
   
 })(jQuery); // End of use strict
 

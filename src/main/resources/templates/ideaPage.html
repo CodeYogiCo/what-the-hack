@@ -18,33 +18,34 @@
          	th:action="@{/idea}"
          	-->
             <form  method="post" id="submitIdeaForm">
-               <h3 class="idea-h3">Lets Do it!</h3>
+               <h3 class="idea-h3">Let's Do it!</h3>
                <div class="form-group">
-                  <input type="text" required class="form-control" id="inputTitle" placeholder="Title" name="ideaOverview">
+                  <input type="text" required class="form-control" id="inputTitle" placeholder="Proposition" name="ideaOverview">
                </div>
                
                <div class="form-group">
                   <input type="hidden" id="inputEmail" name="email">
                </div>
 
-               <div class="form-group">
+               <div class="form-group hide">
               	  <select class="form-control" id="inputSection" name="section" required>
-              	  		<option value="">Select</option>
-              	  		<option value="idea">Idea</option>
-              	  		<option value="feature">Feature/Bug</option>
+              	  		<!-- <option value="">Select</option> -->
+              	  		<option value="idea" selected="selected">Idea</option>
+              	  		<!-- <option value="feature">Feature/Bug</option> -->
               	  </select>
                </div>
                
-               <div class="form-group">
+            <!--    <div class="form-group">
                   <textarea required class="form-control" maxlength="100" rows="2" id="inputObjective" placeholder="Objective(upto 100 characters)" name="objective"></textarea>
-               </div>
+               </div> -->
+               
                <div class="form-group">
                   <textarea required class="form-control" rows="10" id="inputDescription" placeholder="Description" name="description"></textarea>
                </div>
-                 <div class="form-group">
+                 <!-- <div class="form-group">
                   <textarea  class="form-control" rows="5" id="inputUrl" placeholder="Links or Urls separated by comma to support your case.It can be a link to document uploaded in google drive." 
                   name="url"></textarea>
-               </div>
+               </div> -->
                          
                 <input id="btnIdeaSubmit" type="submit" class="btn btn-primary btn-xl wow tada" value="Submit" />
 				
