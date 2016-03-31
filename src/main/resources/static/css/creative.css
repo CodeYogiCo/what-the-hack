@@ -632,6 +632,7 @@ a#hackFeature:hover{
 
 .main-home .collapse.navbar-collapse ul li a{
 	  background-color: transparent;
+	  color:#000 !important;
 }
 
 section#analytics{
