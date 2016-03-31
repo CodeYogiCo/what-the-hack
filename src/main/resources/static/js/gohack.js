@@ -720,43 +720,34 @@ function export2excel(){
    
 
     // Initialize WOW.js Scrolling Animations
-    wow = new WOW(
-                      {
-                      boxClass:     'wow',      // default
-                      animateClass: 'animated', // default
-                      offset:       0,          // default
-                      mobile:       true,       // default
-                      live:         true        // default
-                    }
-                    )
-                    wow.init();
+    new WOW().init();
     
     
     
-    function updateLove(){
-    $.ajax({
-		url : "/loves",
-		cache:false,
-		success:function(data){
-			 $("#btnLove div").text(data);
-		}
-	});
-    }
-   
-    if($(".heartbeat").length > 0)
-    	updateLove();
-    
-    $("#btnLove").on("click",function(){
-    	$.ajax({
-    		url : "/register/love",
-    		cache:false,
-    		success:function(){
-    			$("#btnLove").css({"color":"#EE0000"}).removeClass("fa-heart-o").addClass("fa-heart");
-    			$("#btnLove").css({"animation":"beat 0.5s infinite alternate"});
-    			 updateLove();
-    		}
-    	});
-    });
+//    function updateLove(){
+//    $.ajax({
+//		url : "/loves",
+//		cache:false,
+//		success:function(data){
+//			 $("#btnLove div").text(data);
+//		}
+//	});
+//    }
+//   
+//    if($(".heartbeat").length > 0)
+//    	updateLove();
+//    
+//    $("#btnLove").on("click",function(){
+//    	$.ajax({
+//    		url : "/register/love",
+//    		cache:false,
+//    		success:function(){
+//    			$("#btnLove").css({"color":"#EE0000"}).removeClass("fa-heart-o").addClass("fa-heart");
+//    			$("#btnLove").css({"animation":"beat 0.5s infinite alternate"});
+//    			 updateLove();
+//    		}
+//    	});
+//    });
   
 })(jQuery); // End of use strict
 
