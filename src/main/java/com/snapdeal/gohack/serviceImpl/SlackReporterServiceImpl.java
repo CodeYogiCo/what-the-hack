@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 
 import org.quartz.SchedulerException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
@@ -30,8 +31,7 @@ public class SlackReporterServiceImpl implements SlackReoprterService {
     ISchedulerService schedulerService;
     
     
-    private final static String scheduledTime="0 0 0/6 * * ?";
-
+    
     @PostConstruct
     public void init() throws SchedulerException {
         schedulerService.schedule(scheduledTime, "Slack Daily job");
@@ -47,7 +47,15 @@ public class SlackReporterServiceImpl implements SlackReoprterService {
     @Autowired
     Gson                        gson;
 
-    private final static String WEBHOOK_URL = "https://hooks.slack.com/services/T02UFKJS8/B0WQ4KFSR/gbJiYPrMDF80DBfjIB90d";
+
+    
+    @Value("${slack.url:https://hooks.slack.com/services/T02UFKJS8/B0WQ4KFSR/gbJiYPrMDF80DBfjIB90d60}")
+    private String WEBHOOK_URL;
+    
+    
+    @Value("${slack.time:0 0 12 * * ?}")
+    private  String scheduledTime;
+
 
     public CountInsight getData() {
         return ideaService.getCount();

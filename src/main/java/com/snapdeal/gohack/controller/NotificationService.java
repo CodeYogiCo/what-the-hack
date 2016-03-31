@@ -7,6 +7,8 @@
  */
 package com.snapdeal.gohack.controller;
 
+import java.util.List;
+
 import com.snapdeal.gohack.model.NotificationDataDTO;
 import com.snapdeal.gohack.model.NotificationResponseDTO;
 import com.snapdeal.gohack.model.UserWebRegistration;
@@ -18,6 +20,6 @@ public interface NotificationService {
 
     NotificationResponseDTO push(NotificationDataDTO pushData) throws ServiceException;
 
-    NotificationDataDTO getNotificationDetails(String registrationId) throws ServiceException;
+    List<NotificationDataDTO> getNotificationDetails(String registrationId) throws ServiceException;
 
 }

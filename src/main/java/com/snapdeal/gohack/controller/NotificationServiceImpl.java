@@ -52,10 +52,9 @@ public class NotificationServiceImpl implements NotificationService {
         System.out.println(listOfRegistrationId);
         NotificationResponseDTO notificationResponse = new NotificationResponseDTO();
         try {
-            System.out.println(pushData.getTitle());
             for (UserWebRegistration eachRegistrationId : listOfRegistrationId) {
                 jdbcTemplate.update("insert into hack_push as hp (registration_id,tag_id,push_title,push_message,push_url) values(?,?,?,?,?) on duplicate key update hp.push_title=push_title,hp.push_message=push_message,hp.push_url=push_url",
-                        new Object[] { eachRegistrationId.getRegistrationId(),UUID.randomUUID().toString(), pushData.getTitle(), pushData.getMessage(), pushData.getUrl() });
+                        new Object[] { eachRegistrationId.getRegistrationId(),UUID.randomUUID().toString(), pushData.getPushTitle(), pushData.getPushMessage(), pushData.getPushUrl() });
             }
             notificationResponse.setMessage("successfully pushed");
         } catch (Exception e) {
@@ -77,14 +76,14 @@ public class NotificationServiceImpl implements NotificationService {
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
-    public NotificationDataDTO getNotificationDetails(String registrationId) throws ServiceException {
+    public List<NotificationDataDTO> getNotificationDetails(String registrationId) throws ServiceException {
         List<NotificationDataDTO> notificationData = new ArrayList<>();
         try {
-            notificationData = jdbcTemplate.query("select * from hack_push where registration_id", new Object[] { registrationId },
+            notificationData = jdbcTemplate.query("select * from hack_push where registration_id =?", new Object[] { registrationId },
                     new BeanPropertyRowMapper(NotificationDataDTO.class));
         } catch (Exception e) {
             throw new ServiceException(e.getMessage());
         }
-        return notificationData.get(0);
+        return notificationData;
     }
 }

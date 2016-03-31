@@ -29,7 +29,7 @@ self.addEventListener('notificationclick', function(event) {
     );
 });
 self.addEventListener('push', function(event) {
-  //console.log('Push message', event);
+  console.log('Push message', event);
   //Fetch undelived message
   try{
     var subscriptionId = "";
@@ -37,29 +37,29 @@ self.addEventListener('push', function(event) {
         self.registration.pushManager.getSubscription()
           .then(function(subscription) {
             var subscriptionId = getSubscriptionId(subscription);
-            var baseURL = "https://10.41.56.33:8443";
-            undeliveredNotificationURL =  baseURL + "/notification/undelivered?subscriptionId=" + subscriptionId;
+            undeliveredNotificationURL =  "/notification/undelivered?subscriptionId=" + subscriptionId;
             
             fetch(
-              "/webnotification/undelivered/"+subscriptionId).then(function(response){
-                //console.log("Status:",response.status);
+              "/web/user/undelivered/"+subscriptionId).then(function(response){
+                console.log("Status:",response.status);
                 if(response.ok){
                   var title, message, url, tagId; 
                   response.json().then(function(json) {
-                  var notifications = json.notifications;
+                  var notifications = json.result;
+                  console.log(notifications)
                   for (i = 0; i < notifications.length; i++){
-                      title = notifications[i].title;
-                      message = notifications[i].message;
-                      url = notifications[i].notificationUrl;
-                      tagId = notifications[i].tagId;
-                      
-                      self.registration.showNotification(title, {
-                          body: message,
-                          icon: 'http://i1.sdlcdn.com/img/storeFrontFeaturedProductAdmin/12/NewSnapdealLogo15045.png',
-                          tag: tagId,
-                          data: url
-                        });
-                      
+                  title = notifications[i].pushTitle;
+                  message = notifications[i].pushMessage;
+                  url = notifications[i].pushUrl;
+                  tagId = notifications[i].tagId;
+                  
+                  self.registration.showNotification(title, {
+                      body: message,
+                      icon: 'http://i1.sdlcdn.com/img/storeFrontFeaturedProductAdmin/12/NewSnapdealLogo15045.png',
+                      tag: tagId,
+                      data: url
+                    });
+                  
                   }
               }).catch(function(err) {
                   console.log("Error:",JSON.stringify(err));

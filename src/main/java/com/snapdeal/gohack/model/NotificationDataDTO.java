@@ -9,52 +9,48 @@ package com.snapdeal.gohack.model;
 
 public class NotificationDataDTO {
     
-    private int id;
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    private String title;
-    
-    private String message;
-    
-    private String url;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    @Override
-    public String toString() {
-        return "NotificationDataDTO [id=" + id + ", title=" + title + ", message=" + message + ", url=" + url + "]";
-    }
-
    
+    private String pushTitle;
+    
+    private String pushMessage;
+    
+    private String pushUrl;
+
+    private String tagId;
+
+    public String getPushTitle() {
+        return pushTitle;
+    }
+
+    public void setPushTitle(String pushTitle) {
+        this.pushTitle = pushTitle;
+    }
+
+    public String getPushMessage() {
+        return pushMessage;
+    }
+
+    public void setPushMessage(String pushMessage) {
+        this.pushMessage = pushMessage;
+    }
+
+    public String getPushUrl() {
+        return pushUrl;
+    }
+
+    public void setPushUrl(String pushUrl) {
+        this.pushUrl = pushUrl;
+    }
+
+    public String getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(String tagId) {
+        this.tagId = tagId;
+    }
+    
+    
     
     
 
