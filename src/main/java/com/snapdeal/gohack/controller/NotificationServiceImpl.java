@@ -53,7 +53,7 @@ public class NotificationServiceImpl implements NotificationService {
         NotificationResponseDTO notificationResponse = new NotificationResponseDTO();
         try {
             for (UserWebRegistration eachRegistrationId : listOfRegistrationId) {
-                jdbcTemplate.update("insert into hack_push as hp (registration_id,tag_id,push_title,push_message,push_url) values(?,?,?,?,?) on duplicate key update hp.push_title=push_title,hp.push_message=push_message,hp.push_url=push_url",
+                jdbcTemplate.update("insert into hack_push (registration_id,tag_id,push_title,push_message,push_url) values(?,?,?,?,?) on duplicate key update push_title=VALUES(push_title),push_message=VALUES(push_message),push_url=VALUES(push_url)",
                         new Object[] { eachRegistrationId.getRegistrationId(),UUID.randomUUID().toString(), pushData.getPushTitle(), pushData.getPushMessage(), pushData.getPushUrl() });
             }
             notificationResponse.setMessage("successfully pushed");
