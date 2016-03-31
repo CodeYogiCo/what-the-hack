@@ -702,6 +702,10 @@ function export2excel(){
         $('.navbar-toggle:visible').click();
     });
 
+    $(".fa-arrow-down").on("click",function(){
+    	$("html, body").animate({ scrollTop:$("#about")}, 1000);
+    });
+    
     // Fit Text Plugin for Main Header
     $("h1").fitText(
         1.2, {
