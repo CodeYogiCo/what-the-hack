@@ -67,23 +67,23 @@ public class SlackReporterServiceImpl implements SlackReoprterService {
         CountInsight counts = getData();
         if (counts.getIdeaCount() < 50) {
             slackMessageDTO.setText("Dang! Looks like We're still kicking tires.\n "
-                    + "Just " + counts.getIdeaCount() + " ideas \n"+"<http://wth.snapdeal.com/wth-numbers>");
+                    + "Just " + counts.getIdeaCount() + " ideas \n"+"<https://wth.snapdeal.com/wth-numbers>");
         }
         
         if (counts.getIdeaCount() >50 && counts.getIdeaCount()<100) {
             slackMessageDTO.setText("Dang! Looks like We're still kicking tires.\n "
-                    + "Just " + counts.getIdeaCount() + " ideas \n"+"<http://wth.snapdeal.com/wth-numbers>");
+                    + "Just " + counts.getIdeaCount() + " ideas \n"+"<https://wth.snapdeal.com/wth-numbers>");
         }
         if (counts.getIdeaCount() > 100 && counts.getIdeaCount() <150) {
-            slackMessageDTO.setText("Oh we just had a century.Wth-bot is loving it. \n " + counts.getIdeaCount() + " ideas.Lots more to come \n"+"<http://wth.snapdeal.com/wth-numbers>");
+            slackMessageDTO.setText("Oh we just had a century.Wth-bot is loving it. \n " + counts.getIdeaCount() + " ideas.Lots more to come \n"+"<https://wth.snapdeal.com/wth-numbers>");
         }
 
         if (counts.getIdeaCount() > 150 && counts.getIdeaCount() <200) {
-            slackMessageDTO.setText("We are doing good guys. \n" + counts.getIdeaCount() + " ideas.Bring it on \n"+"<http://wth.snapdeal.com/wth-numbers>");
+            slackMessageDTO.setText("We are doing good guys. \n" + counts.getIdeaCount() + " ideas.Bring it on \n"+"<https://wth.snapdeal.com/wth-numbers>");
         }
 
         if (counts.getIdeaCount() > 200) {
-            slackMessageDTO.setText("Awesome .\n" + counts.getIdeaCount() + "  ideas.\n"+"<http://wth.snapdeal.com/wth-numbers>");
+            slackMessageDTO.setText("Awesome .\n" + counts.getIdeaCount() + "  ideas.\n"+"<https://wth.snapdeal.com/wth-numbers>");
         }
         slackMessageDTO.setUsername("wth-bot");
         slackMessageDTO.setIcon(":ghost:");
