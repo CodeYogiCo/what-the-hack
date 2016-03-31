@@ -7,10 +7,17 @@
  */
 package com.snapdeal.gohack.controller;
 
+import com.snapdeal.gohack.model.NotificationDataDTO;
+import com.snapdeal.gohack.model.NotificationResponseDTO;
 import com.snapdeal.gohack.model.UserWebRegistration;
+import com.snapdeal.gohack.model.UserWebRegistrationDTO;
 
 public interface NotificationService {
 
-    String doUserWebRegsitration(UserWebRegistration userReg);
+    UserWebRegistrationDTO doUserWebRegsitration(UserWebRegistration userReg) throws ServiceException;
+
+    NotificationResponseDTO push(NotificationDataDTO pushData) throws ServiceException;
+
+    NotificationDataDTO getNotificationDetails(String registrationId) throws ServiceException;
 
 }
