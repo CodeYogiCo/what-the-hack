@@ -47,7 +47,7 @@ public class SlackReporterServiceImpl implements SlackReoprterService {
     @Autowired
     Gson                        gson;
 
-    private final static String WEBHOOK_URL = "https://hooks.slack.com/services/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";
+    private final static String WEBHOOK_URL = "https://hooks.slack.com/services/T02UFKJS8/B0WQ4KFSR/gbJiYPrMDF80DBfjIB90d";
 
     public CountInsight getData() {
         return ideaService.getCount();
