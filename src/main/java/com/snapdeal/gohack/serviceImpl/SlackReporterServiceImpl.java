@@ -30,7 +30,7 @@ public class SlackReporterServiceImpl implements SlackReoprterService {
     ISchedulerService schedulerService;
     
     
-    private final static String scheduledTime="0 0/5 * * * ?";
+    private final static String scheduledTime="0 0 0/6 * * ?";
 
     @PostConstruct
     public void init() throws SchedulerException {
@@ -47,7 +47,7 @@ public class SlackReporterServiceImpl implements SlackReoprterService {
     @Autowired
     Gson                        gson;
 
-    private final static String WEBHOOK_URL = "https://hooks.slack.com/services/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";
+    private final static String WEBHOOK_URL = "https://hooks.slack.com/services/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";
 
     public CountInsight getData() {
         return ideaService.getCount();
