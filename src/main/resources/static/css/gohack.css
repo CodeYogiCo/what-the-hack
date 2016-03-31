@@ -10108,6 +10108,12 @@ section#analytics{
 	margin-top:40%;
 }
 
+.fa-users{
+	position: absolute;
+    top: 21%;
+    font-size: 6em;
+}
+
 .agenda h1 span{
     display:block;
 	font-size:14px;
