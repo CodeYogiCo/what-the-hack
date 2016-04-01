@@ -32,7 +32,7 @@
                 return !1;  
             }
             WTH.pushAPI.canPushBeEnabled = !0;
-            WTH.pushAPI.serviceWorkerRegistrationObj = serviceWorkerRegistration;
+            //WTH.pushAPI.serviceWorkerRegistrationObj = serviceWorkerRegistration;
            
             return !0;
         }
@@ -44,11 +44,11 @@
         return {
             canPushBeEnabled: !1,
             isPushEnabled: !1,
-            serviceWorkerRegistrationObj: '',
+            //serviceWorkerRegistrationObj: '',
             isChromeSupported : "chrome" in window && "serviceWorker" in navigator && getChromeVersion() >= 42,
             isFirefoxSupported : /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent) && "serviceWorker" in navigator,
             isSafariSupported : "safari" in window && "pushNotification" in window.safari,
-            serviceWorkerPath: "/js/service-worker.js",
+            serviceWorkerPath: "/service-worker.js",
             isUserSubscriptionDenied: !1,
             browserType: "",
             browserVersion: "",
@@ -121,9 +121,10 @@
             
             subscribe: function() {
                 var promise = jQuery.Deferred();
-                //return navigator.serviceWorker.ready.then(function( serviceWorkerRegistration ) {
-                return (
-                    this.serviceWorkerRegistrationObj.pushManager.subscribe({
+                
+                return navigator.serviceWorker.ready.then(function( serviceWorkerRegistration ) {
+                	
+                	serviceWorkerRegistration.pushManager.subscribe({
                         userVisibleOnly: !0
                     }).then(function(subscription) {
                         WTH.pushAPI.isPushEnabled = !0; 
@@ -136,13 +137,15 @@
                         else {
                             promise.resolve("denied");
                         }
-                    }), promise );
+                    });
+                }), promise ;
             },
             
             unsubscribe: function() {
                 var promise = jQuery.Deferred();
-                return (
-                    this.serviceWorkerRegistrationObj.pushManager.getSubscription().then( function(subscription ) {
+                return navigator.serviceWorker.ready.then(function( serviceWorkerRegistration ) {
+                	
+                	serviceWorkerRegistration.pushManager.getSubscription().then( function(subscription ) {
                         if ( !subscription ) {
                              WTH.pushAPI.isPushEnabled = !1; promise.resolve("error");
                         }
@@ -155,7 +158,8 @@
                         }
                     } )["catch"]( function() {
                         promise.resolve("error");
-                    } ), promise );    
+                    } );
+                }), promise ;    
             }
         };
     }();
