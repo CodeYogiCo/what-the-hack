@@ -41,4 +41,9 @@ public interface IdeaService {
 
 	public List<Idea> getIdeaByEmail(String email);
 
+    public List<Idea> getIdeas(String q);
+
+
+    List<Idea> getIdeasByEmailOrTitle(String q);
+
 }

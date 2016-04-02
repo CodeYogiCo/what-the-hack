@@ -3,259 +3,235 @@ package com.snapdeal.gohack.model;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.solr.client.solrj.beans.Field;
+import org.springframework.data.annotation.Id;
+
 import com.snapdeal.gohack.serviceImpl.Comment;
 
 public class Idea {
-	
-	public String ideaNumber;
-	
-	public String ideaStatus;
-	
-	public int ideaUpVote;
-	
-	public int ideaDownVote;
-	
-	public Date submittedOn;
-	
-	public int count;
-	
-	public String category;
-	
-	public String comment;
-	
-	public int enabled;
-	
-	public String teamMembers;
 
-	
-	
-	public String getTeamMembers() {
-		return teamMembers;
-	}
+    
+    @Id
+    @Field("id")
+    public String ideaNumber;
 
-	public void setTeamMembers(String teamMembers) {
-		this.teamMembers = teamMembers;
-	}
+    public String ideaStatus;
 
-	public int teamsize;
-	
-	
-	
+    public int    ideaUpVote;
 
-	public int getTeamsize() {
-		return teamsize;
-	}
+    public int    ideaDownVote;
 
-	public void setTeamsize(int teamsize) {
-		this.teamsize = teamsize;
-	}
+    public Date   submittedOn;
 
-	public int getEnabled() {
-		return enabled;
-	}
+    public int    count;
 
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
-	}
+    public String category;
 
-	public List<Comment> comments;
-	
-	
-	
-	public List<Comment> getComments() {
-		return comments;
-	}
+    public String comment;
 
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
+    public int    enabled;
 
-	public String getComment() {
-		return comment;
-	}
+    public String teamMembers;
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+    
+    @Field("section_name")
+    public String section;
 
-	public String getCategory() {
-		return category;
-	}
+    public String objective;
+    
+    @Field("description_details")
+    public String description;
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+    public String url;
+    
+   @Field("idea_overview")
+    public String ideaOverview;
 
-	private String ideaTeamEmailId;
-	
-	
-	public String getIdeaTeamEmailId() {
-		return ideaTeamEmailId;
-	}
-
-	public void setIdeaTeamEmailId(String ideaTeamEmailId) {
-		this.ideaTeamEmailId = ideaTeamEmailId;
-	}
-
-	private List<String> collabarators;
-	
-	
-	
-	
-	
-	public List<String> getCollabarators() {
-		return collabarators;
-	}
-
-	public void setCollabarators(List<String> collabarators) {
-		this.collabarators = collabarators;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
-	public Date getSubmittedOn() {
-		return submittedOn;
-	}
-
-	public void setSubmittedOn(Date submittedOn) {
-		this.submittedOn = submittedOn;
-	}
-
-	public String getIdeaStatus() {
-		return ideaStatus;
-	}
-
-	public void setIdeaStatus(String ideaStatus) {
-		this.ideaStatus = ideaStatus;
-	}
-
-	public int getIdeaUpVote() {
-		return ideaUpVote;
-	}
-
-	public void setIdeaUpVote(int ideaUpVote) {
-		this.ideaUpVote = ideaUpVote;
-	}
-
-	public int getIdeaDownVote() {
-		return ideaDownVote;
-	}
-
-	public void setIdeaDownVote(int ideaDownVote) {
-		this.ideaDownVote = ideaDownVote;
-	}
-
-	public String getIdeaNumber() {
-		return ideaNumber;
-	}
-
-	public void setIdeaNumber(String ideaNumber) {
-		this.ideaNumber = ideaNumber;
-	}
-
-	public String ideaOverview;
-	
-	public String email;
-	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String section;
-
-	public String objective;
-
-	
-	public String description;
-	
-	public String url;
-
-	
+   
+   @Field("email_id")
+    public String email;
 
 
-	public String getUrl() {
-		return url;
-	}
+    public String getTeamMembers() {
+        return teamMembers;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setTeamMembers(String teamMembers) {
+        this.teamMembers = teamMembers;
+    }
 
-	public String getIdeaOverview() {
-		return ideaOverview;
-	}
+    public int teamsize;
 
-	public void setIdeaOverview(String ideaOverview) {
-		this.ideaOverview = ideaOverview;
-	}
+    public int getTeamsize() {
+        return teamsize;
+    }
 
-	public String getSection() {
-		return section;
-	}
+    public void setTeamsize(int teamsize) {
+        this.teamsize = teamsize;
+    }
 
-	public void setSection(String section) {
-		this.section = section;
-	}
+    public int getEnabled() {
+        return enabled;
+    }
 
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
 
-	public String getObjective() {
-		return objective;
-	}
+    public List<Comment> comments;
 
-	public void setObjective(String objective) {
-		this.objective = objective;
-	}
+    public List<Comment> getComments() {
+        return comments;
+    }
 
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getComment() {
+        return comment;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-	@Override
-	public String toString() {
-		return "Idea [ideaNumber=" + ideaNumber + ", ideaStatus=" + ideaStatus
-				+ ", ideaUpVote=" + ideaUpVote + ", ideaDownVote="
-				+ ideaDownVote + ", submittedOn=" + submittedOn + ", count="
-				+ count + ", category=" + category + ", comment=" + comment
-				+ ", enabled=" + enabled + ", teamMembers=" + teamMembers
-				+ ", teamsize=" + teamsize + ", comments=" + comments
-				+ ", ideaTeamEmailId=" + ideaTeamEmailId + ", collabarators="
-				+ collabarators + ", ideaOverview=" + ideaOverview + ", email="
-				+ email + ", section=" + section + ", objective=" + objective
-				+ ", description=" + description + ", url=" + url
-				+ ", getTeamMembers()=" + getTeamMembers() + ", getTeamsize()="
-				+ getTeamsize() + ", getEnabled()=" + getEnabled()
-				+ ", getComments()=" + getComments() + ", getComment()="
-				+ getComment() + ", getCategory()=" + getCategory()
-				+ ", getIdeaTeamEmailId()=" + getIdeaTeamEmailId()
-				+ ", getCollabarators()=" + getCollabarators()
-				+ ", getCount()=" + getCount() + ", getSubmittedOn()="
-				+ getSubmittedOn() + ", getIdeaStatus()=" + getIdeaStatus()
-				+ ", getIdeaUpVote()=" + getIdeaUpVote()
-				+ ", getIdeaDownVote()=" + getIdeaDownVote()
-				+ ", getIdeaNumber()=" + getIdeaNumber() + ", getEmail()="
-				+ getEmail() + ", getUrl()=" + getUrl()
-				+ ", getIdeaOverview()=" + getIdeaOverview()
-				+ ", getSection()=" + getSection() + ", getObjective()="
-				+ getObjective() + ", getDescription()=" + getDescription()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
-	}
+    public String getCategory() {
+        return category;
+    }
 
-	
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    private String ideaTeamEmailId;
+
+    public String getIdeaTeamEmailId() {
+        return ideaTeamEmailId;
+    }
+
+    public void setIdeaTeamEmailId(String ideaTeamEmailId) {
+        this.ideaTeamEmailId = ideaTeamEmailId;
+    }
+
+    private List<String> collabarators;
+
+    public List<String> getCollabarators() {
+        return collabarators;
+    }
+
+    public void setCollabarators(List<String> collabarators) {
+        this.collabarators = collabarators;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public Date getSubmittedOn() {
+        return submittedOn;
+    }
+
+    public void setSubmittedOn(Date submittedOn) {
+        this.submittedOn = submittedOn;
+    }
+
+    public String getIdeaStatus() {
+        return ideaStatus;
+    }
+
+    public void setIdeaStatus(String ideaStatus) {
+        this.ideaStatus = ideaStatus;
+    }
+
+    public int getIdeaUpVote() {
+        return ideaUpVote;
+    }
+
+    public void setIdeaUpVote(int ideaUpVote) {
+        this.ideaUpVote = ideaUpVote;
+    }
+
+    public int getIdeaDownVote() {
+        return ideaDownVote;
+    }
+
+    public void setIdeaDownVote(int ideaDownVote) {
+        this.ideaDownVote = ideaDownVote;
+    }
+
+    public String getIdeaNumber() {
+        return ideaNumber;
+    }
+
+    public void setIdeaNumber(String ideaNumber) {
+        this.ideaNumber = ideaNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getIdeaOverview() {
+        return ideaOverview;
+    }
+
+    public void setIdeaOverview(String ideaOverview) {
+        this.ideaOverview = ideaOverview;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public String getObjective() {
+        return objective;
+    }
+
+    public void setObjective(String objective) {
+        this.objective = objective;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Idea [ideaNumber=" + ideaNumber + ", ideaStatus=" + ideaStatus + ", ideaUpVote=" + ideaUpVote + ", ideaDownVote=" + ideaDownVote + ", submittedOn=" + submittedOn
+                + ", count=" + count + ", category=" + category + ", comment=" + comment + ", enabled=" + enabled + ", teamMembers=" + teamMembers + ", teamsize=" + teamsize
+                + ", comments=" + comments + ", ideaTeamEmailId=" + ideaTeamEmailId + ", collabarators=" + collabarators + ", ideaOverview=" + ideaOverview + ", email=" + email
+                + ", section=" + section + ", objective=" + objective + ", description=" + description + ", url=" + url + ", getTeamMembers()=" + getTeamMembers()
+                + ", getTeamsize()=" + getTeamsize() + ", getEnabled()=" + getEnabled() + ", getComments()=" + getComments() + ", getComment()=" + getComment() + ", getCategory()="
+                + getCategory() + ", getIdeaTeamEmailId()=" + getIdeaTeamEmailId() + ", getCollabarators()=" + getCollabarators() + ", getCount()=" + getCount()
+                + ", getSubmittedOn()=" + getSubmittedOn() + ", getIdeaStatus()=" + getIdeaStatus() + ", getIdeaUpVote()=" + getIdeaUpVote() + ", getIdeaDownVote()="
+                + getIdeaDownVote() + ", getIdeaNumber()=" + getIdeaNumber() + ", getEmail()=" + getEmail() + ", getUrl()=" + getUrl() + ", getIdeaOverview()=" + getIdeaOverview()
+                + ", getSection()=" + getSection() + ", getObjective()=" + getObjective() + ", getDescription()=" + getDescription() + ", getClass()=" + getClass()
+                + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+    }
 
 }

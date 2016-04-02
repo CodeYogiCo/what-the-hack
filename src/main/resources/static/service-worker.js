@@ -56,7 +56,7 @@ self.addEventListener('push', function(event) {
                   
                   self.registration.showNotification(title, {
                       body: message,
-                      icon: 'http://i1.sdlcdn.com/img/storeFrontFeaturedProductAdmin/12/NewSnapdealLogo15045.png',
+                      icon: 'https://sdl-isc-test.s3.amazonaws.com/ios/IMG_5418',
                       tag: tagId,
                       data: url
                     });

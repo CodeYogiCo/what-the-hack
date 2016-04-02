@@ -250,12 +250,18 @@ public class IdeaController {
 	}
 	
 	
-	@RequestMapping (value="/idea",method=RequestMethod.GET)
-	public List<Idea> getIdeaByEmail(HttpServletRequest request){
 
-		String email=getEmailIdFromSessio(request);
-		return ideaService.getIdeaByEmail(email);
-	}
+	@RequestMapping (value="/getIdeas",method=RequestMethod.GET)
+    public List<Idea> getIdeaByEmail(@RequestParam String q,HttpServletRequest request){
+
+        return ideaService.getIdeas(q);
+    }
+	
+	@RequestMapping (value="/getIdeasByEmailOrTitle",method=RequestMethod.GET)
+    public List<Idea> getIdeasByEmailOrTitle(@RequestParam String q,HttpServletRequest request){
+
+        return ideaService.getIdeasByEmailOrTitle(q);
+    }
 
 
 }

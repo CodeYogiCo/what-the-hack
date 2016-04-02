@@ -160,6 +160,20 @@ $(document).ready(function() {
              success:updateTable
          });
      });
+     
+     $("#searchbutton").on("click", function(e) {
+    	 e.preventDefault();
+    	 searchTerm=$("#searchText").val();
+    	 $.ajax({
+             url: "/getIdeasByEmailOrTitle?q="+searchTerm,
+             cache: false,
+             async: false,
+             success:function(data){
+            	 console.log(data);
+             }
+         });
+     });
+
 
      
      function updateTable(result){

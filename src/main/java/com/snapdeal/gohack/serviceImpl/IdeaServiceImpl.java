@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -36,6 +37,7 @@ import com.github.jknack.handlebars.io.TemplateLoader;
 import com.snapdeal.gohack.model.CountInsight;
 import com.snapdeal.gohack.model.Idea;
 import com.snapdeal.gohack.model.Status;
+import com.snapdeal.gohack.repository.IdeaRepository;
 import com.snapdeal.gohack.service.IdeaService;
 
 
@@ -43,6 +45,9 @@ import com.snapdeal.gohack.service.IdeaService;
 @PropertySource({"classpath:ideas.properties","classpath:sql.properties"})
 
 public class IdeaServiceImpl implements IdeaService{
+    
+    @Autowired
+    IdeaRepository ideaRepository;
 
 
 	@Autowired
@@ -332,6 +337,17 @@ public class IdeaServiceImpl implements IdeaService{
 				new BeanPropertyRowMapper(Idea.class));
 		return ideas;
 	}
+
+
+    @Override
+    public List<Idea> getIdeas(String q) {
+        return ideaRepository.findAllIdeas(new PageRequest(0, 100));
+    }
+    
+    @Override
+    public List<Idea> getIdeasByEmailOrTitle(String q) {
+        return ideaRepository.findByTitleOrEmail(q,new PageRequest(0, 100));
+    }
 
 
 }
