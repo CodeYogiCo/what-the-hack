@@ -107,21 +107,21 @@ public class IdeaController {
 		return null;
 	}
 
-	@RequestMapping(value="/idea", method=RequestMethod.POST,headers = 
-			"content-type=application/x-www-form-urlencoded;charset=UTF-8" ,
-			produces={"application/json"},
-			consumes={"text/xml","application/json"})
-	public ResponseEntity<Status> submitIdea(@RequestBody Idea idea,HttpServletRequest request){
-		String hostName=request.getHeader("Host");
-        idea.setEmail(getEmailIdFromSessio(request));
-		if(!isUserAuthorized(request)){
-			return new ResponseEntity<Status>(new Status(true, "home"), HttpStatus.UNAUTHORIZED);
-		}
-		System.out.println(idea);
-		String ideaNumber=ideaService.doSubmit(idea,hostName);
-		return new ResponseEntity<Status>(new Status(true, "/ideaDetail?idea="+ideaNumber), HttpStatus.OK);
-		//return null;
-	}
+//	@RequestMapping(value="/idea", method=RequestMethod.POST,headers = 
+//			"content-type=application/x-www-form-urlencoded;charset=UTF-8" ,
+//			produces={"application/json"},
+//			consumes={"text/xml","application/json"})
+//	public ResponseEntity<Status> submitIdea(@RequestBody Idea idea,HttpServletRequest request){
+//		String hostName=request.getHeader("Host");
+//        idea.setEmail(getEmailIdFromSessio(request));
+//		if(!isUserAuthorized(request)){
+//			return new ResponseEntity<Status>(new Status(true, "home"), HttpStatus.UNAUTHORIZED);
+//		}
+//		System.out.println(idea);
+//		String ideaNumber=ideaService.doSubmit(idea,hostName);
+//		return new ResponseEntity<Status>(new Status(true, "/ideaDetail?idea="+ideaNumber), HttpStatus.OK);
+//		//return null;
+//	}
 
 	@RequestMapping(value="/update", method=RequestMethod.POST,
 			produces={"application/json"},

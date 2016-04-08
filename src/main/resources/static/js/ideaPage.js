@@ -160,21 +160,33 @@ $(document).ready(function() {
              success:updateTable
          });
      });
-     
+     	
      $("#searchbutton").on("click", function(e) {
     	 e.preventDefault();
     	 searchTerm=$("#searchText").val();
+    		 searchIdeas(searchTerm);
+    });
+     
+     $("#searchText").on("blur",function(e){
+    	 e.preventDefault();
+    	 searchTerm=$("#searchText").val();
+    	 if(searchTerm.length() > 3)
+    	 {
+    		 searchIdeas(searchTerm);
+    	 }
+     });
+
+     function searchIdeas(searchTerm){
     	 $.ajax({
              url: "/getIdeasByEmailOrTitle?q="+searchTerm,
              cache: false,
              async: false,
              success:function(data){
             	 console.log(data);
+            	 //updateTable(data);
              }
          });
-     });
-
-
+     }
      
      function updateTable(result){
     	  $(".table-striped.table-bordered tbody,.table-striped.table-bordered thead").remove();

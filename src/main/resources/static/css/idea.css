@@ -328,10 +328,25 @@ body.main-ideas{
 	font-weight:bold;
 }
 
+#searchText{
+	    height: 44px;
+}
 
+.search-results{
+	min-height:500px;
+	background:#fff;
+	z-index:5;
+	text-shadow: 0 -1px #d0284b, 0 1px #f96080;
+}
+
+.disabled,#btnIdeaSubmit{
+	pointer-events:none;
+	background-color:gray;
+}
 
 @media (max-width: 768px) {
 	.fa-lightbulb-o,.fa-bug{
 		display:none;
 	}
 }
+
